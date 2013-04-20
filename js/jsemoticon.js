@@ -4,7 +4,7 @@
 		domID: 'content',
 
 		//the location of your smilies images.
-		path: '../smilies/',
+		path: '/smilies/',
 
 		//all of the smilies' definition.
 		//smilies: the tag you will used in your text; filename: the smilies's filename.
