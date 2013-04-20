@@ -1,0 +1,257 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>vps | Leigh:// 斯路</title>
+  <meta name="author" content="Leigh Zhu">
+  
+  <meta name="description" content="Personal Blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Leigh:// 斯路"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Leigh:// 斯路" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+</head>
+
+
+<body>
+	<div id="stick">
+		<header id="header"><hgroup>
+	<h1><a href="/">Leigh:// 斯路</a></h1>
+	<h2>行于斯路…</h2>
+</hgroup>
+<nav id="header-nav" class="clearfix">
+	<ul>
+		
+			<li><a href="/">Home</a></li>
+		
+			<li><a href="/archives">Archives</a></li>
+		
+	</ul>
+</nav>
+<nav id="ext-nav" class="clearfix">
+	<ul>
+		
+	</ul>
+</nav></header>
+		<footer id="footer"><p class="copy">
+	
+	&copy; 2013 Leigh Zhu
+	
+</p></footer>
+	</div>
+	<div id="wrapper" class="clearfix">
+		<div id="content">
+<h2 class="archive-title tag">vps</h2>
+
+
+  
+    <article class="post">
+	
+	<div class="post-content">
+		<header>
+			
+  
+    <h1 class="title"><a href="/2012/07/16/nginx-and-node-js-on-vps/">nginx and node.js on vps</a></h1>
+  
+
+			
+				<time datetime="2012-07-16T06:11:20.000Z">2012 Jul 16</time>
+			
+		</header>
+		<div class="entry">
+			
+				<p>买了 VPS 随便瞎折腾，也不知道正确与否，反正在跑了，就算对了吧。记录一下折腾过程。
+话说买来 VPS 是准备折腾 node.js 的，为了长远考虑，基本还是要扔个 nginx 上去的，虽然 node.js 本身就可以当 http 服务器使唤，考虑到， nginx 是宇宙无敌的反向代理，有了它，多域名，80 端口冲突啥也都好解决。</p>
+<p>那么首先是 nginx ，小鸡是 CentOS 5 的。参考了 Linode 的 <a href="http://library.linode.com/lemp-guides/centos-5">LEMP Server on CentOS 5</a></p>
+<p>本来想自己编译的，偷懒了</p>
+<pre><code>rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/i386/epel-release-5-4.noarch.rpm 
+yum update 
+yum install nginx sudo `<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
+&amp;nbsp;
+
+这就装好了，下面命令开启 nginx 和加入开机启动：
+<span class="tag">&lt;<span class="title">pre</span> <span class="attribute">class</span>=<span class="value">"prettyprint"</span>&gt;</span>` 
+/etc/init.d/nginx start 
+chkconfig --add nginx 
+chkconfig nginx on 
+`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
+访问，既可以看到 nginx 欢迎页面了。
+洁癖起见，我们将 nginx 默认的 web 目录移走，移到更多人放的 /home/xxx 下面，默认在 /usr/share/nginx/html (不同的 nginx 编译版可能会有不同，这里用的的 EPEL 的)。
+<span class="tag">&lt;<span class="title">pre</span> <span class="attribute">class</span>=<span class="value">"prettyprint"</span>&gt;</span>` 
+vi /etc/nginx/ngnix.conf 
+`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
+在 http 块下找到 server 代码块，将其中的 root 后面的路径改了就好了。改完记得 nginx restart。
+
+好了，引擎 X（engine X/nginx） 装好了。
+接下来部署 node.js
+
+首先需要 python 2.6 版本以上， CentOS 5 默认是 2.4 的，废话不多说，直接上命令：
+<span class="tag">&lt;<span class="title">pre</span> <span class="attribute">class</span>=<span class="value">"prettyprint"</span>&gt;</span>` 
+yum groupinstall 'Development Tools' 
+yum install openssl-devel 
+`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
+安装各种开发工具，用于后面的编译。
+<span class="tag">&lt;<span class="title">pre</span> <span class="attribute">class</span>=<span class="value">"prettyprint"</span>&gt;</span>` 
+wget http://www.python.org/ftp/python/2.7.3/Python-2.7.3.tar.bz2 
+tar jxvf Python-2.7.3.tar.bz2 cd Python-2.7.3 
+./configure --prefix=/usr/local/python2.7 
+make make install 
+`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
+安装 python 2.7 到 /usr/local/python2.7 目录下
+<span class="tag">&lt;<span class="title">pre</span> <span class="attribute">class</span>=<span class="value">"prettyprint"</span>&gt;</span>` 
+mv /usr/bin/python /usr/bin/python2.4 
+ln -s /usr/local/python2.7/bin/python2.7 /usr/bin/python 
+`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
+链接文件替换老版本的 python
+<span class="tag">&lt;<span class="title">pre</span> <span class="attribute">class</span>=<span class="value">"prettyprint"</span>&gt;</span>` 
+wget http://nodejs.org/dist/v0.8.2/node-v0.8.2.tar.gz tar xvf node-v0.8.2.tar.gz 
+./configure 
+make 
+make install `<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
+于是，发生错误了，提示 import error 木有找到 bz2 .
+
+好吧，查证了下，说是 CentOS 自带的库太老了，于是：
+<span class="tag">&lt;<span class="title">pre</span> <span class="attribute">class</span>=<span class="value">"prettyprint"</span>&gt;</span>` 
+yum install -y bzip2* 
+cd ../Python-2.7.2/Modules/zlib 
+./configure &amp;amp;&amp;amp; make &amp;amp;&amp;amp; make install 
+cd ../../ 
+python setup.py install 
+`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
+继续 cd 到 node 源码目录，继续 make &amp;amp;&amp;amp; make install
+
+无错误的话，就 OK 了。
+找个地方，写个 app.js :
+<span class="tag">&lt;<span class="title">pre</span> <span class="attribute">class</span>=<span class="value">"prettyprint"</span>&gt;</span>` 
+var http = require('http'); 
+http.createServer(function (req, res) { 
+        res.writeHead(200, {'Content-Type': 'text/plain'}); 
+        res.end('Hello World \n'); 
+        }
+    ).listen(8888); 
+    console.log('Server running.LOL'); 
+`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
+运行：
+<span class="tag">&lt;<span class="title">pre</span> <span class="attribute">class</span>=<span class="value">"prettyprint"</span>&gt;</span>` node app.js 
+</code></pre>
+<p>访问下 yourdomain:8888 就可以看到 node.js 已经在跑了。</p>
+
+			
+		</div>
+		<footer>
+			
+				
+					<div class="alignleft">
+						<a href="/2012/07/16/nginx-and-node-js-on-vps/#more" class="more-link">Read More</a>
+					</div>
+				
+				
+
+			
+		</footer>
+	</div>
+</article>
+
+
+  
+
+  <nav id="pagination" class="clearfix">
+  
+  
+</nav>
+</div>
+		<aside id="widget" class="clearfix">		
+			
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Blog-fix/">Blog-fix</a><small>11</small></li>
+  
+    <li><a href="/categories/Codex/">Codex</a><small>8</small></li>
+  
+    <li><a href="/categories/Blog-fix/Codex/">Codex</a><small>1</small></li>
+  
+    <li><a href="/categories/Life/">Life</a><small>78</small></li>
+  
+    <li><a href="/categories/Tutor/">Tutor</a><small>18</small></li>
+  
+    <li><a href="/categories/Codex/Tutor/">Tutor</a><small>1</small></li>
+  
+    <li><a href="/categories/Life/Uncategorized/">Uncategorized</a><small>4</small></li>
+  
+    <li><a href="/categories/Uncategorized/">Uncategorized</a><small>15</small></li>
+  
+    <li><a href="/categories/Vision/">Vision</a><small>40</small></li>
+  
+  </ul>
+</div>
+
+		
+			
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/GTD/" style="font-size: 16.25px;">GTD</a><a href="/tags/PKM/" style="font-size: 15.50px;">PKM</a><a href="/tags/QQ/" style="font-size: 15.25px;">QQ</a><a href="/tags/cctv/" style="font-size: 15.00px;">cctv</a><a href="/tags/javascript/" style="font-size: 16.00px;">javascript</a><a href="/tags/meme/" style="font-size: 14.75px;">meme</a><a href="/tags/twitter/" style="font-size: 17.50px;">twitter</a><a href="/tags/世博/" style="font-size: 11.50px;">世博</a><a href="/tags/分享/" style="font-size: 13.00px;">分享</a><a href="/tags/前端/" style="font-size: 11.25px;">前端</a><a href="/tags/博客维护/" style="font-size: 19.00px;">博客维护</a><a href="/tags/参观/" style="font-size: 11.75px;">参观</a><a href="/tags/团队/" style="font-size: 12.50px;">团队</a><a href="/tags/图书/" style="font-size: 13.75px;">图书</a><a href="/tags/备份/" style="font-size: 13.50px;">备份</a><a href="/tags/学习/" style="font-size: 17.75px;">学习</a><a href="/tags/思路/" style="font-size: 14.00px;">思路</a><a href="/tags/总结/" style="font-size: 16.50px;">总结</a><a href="/tags/感想/" style="font-size: 19.50px;">感想</a><a href="/tags/手机/" style="font-size: 15.75px;">手机</a><a href="/tags/斯路/" style="font-size: 12.25px;">斯路</a><a href="/tags/旅游/" style="font-size: 12.00px;">旅游</a><a href="/tags/旅途/" style="font-size: 13.25px;">旅途</a><a href="/tags/日记/" style="font-size: 19.75px;">日记</a><a href="/tags/日食/" style="font-size: 10.50px;">日食</a><a href="/tags/春节/" style="font-size: 18.25px;">春节</a><a href="/tags/格莱美/" style="font-size: 10.00px;">格莱美</a><a href="/tags/榜单/" style="font-size: 10.25px;">榜单</a><a href="/tags/气场/" style="font-size: 12.75px;">气场</a><a href="/tags/网络/" style="font-size: 14.50px;">网络</a><a href="/tags/聚会/" style="font-size: 11.00px;">聚会</a><a href="/tags/节日/" style="font-size: 18.75px;">节日</a><a href="/tags/观测/" style="font-size: 10.75px;">观测</a><a href="/tags/视频/" style="font-size: 18.00px;">视频</a><a href="/tags/计划/" style="font-size: 17.25px;">计划</a><a href="/tags/译文/" style="font-size: 17.00px;">译文</a><a href="/tags/读后感/" style="font-size: 14.25px;">读后感</a><a href="/tags/资源/" style="font-size: 16.75px;">资源</a><a href="/tags/软件/" style="font-size: 18.50px;">软件</a><a href="/tags/音乐/" style="font-size: 19.25px;">音乐</a>
+  </div>
+</div>
+
+		
+			<div class="widget blogroll">
+  <h3 class="title">友情链接</h3>	
+	<ul>
+		
+			<li><a href="http://zhuli.me">Leigh</a></li>
+		
+			<li><a href="http://zoechan.me">Zoe</a></li>
+		
+			<li><a href="http://test">Test</a></li>
+		
+	</ul>
+</div>
+		
+</aside>
+	</div>
+	<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"zhulime"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

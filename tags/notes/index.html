@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>notes | Leigh:// 斯路</title>
+  <meta name="author" content="Leigh Zhu">
+  
+  <meta name="description" content="Personal Blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Leigh:// 斯路"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Leigh:// 斯路" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+</head>
+
+
+<body>
+	<div id="stick">
+		<header id="header"><hgroup>
+	<h1><a href="/">Leigh:// 斯路</a></h1>
+	<h2>行于斯路…</h2>
+</hgroup>
+<nav id="header-nav" class="clearfix">
+	<ul>
+		
+			<li><a href="/">Home</a></li>
+		
+			<li><a href="/archives">Archives</a></li>
+		
+	</ul>
+</nav>
+<nav id="ext-nav" class="clearfix">
+	<ul>
+		
+	</ul>
+</nav></header>
+		<footer id="footer"><p class="copy">
+	
+	&copy; 2013 Leigh Zhu
+	
+</p></footer>
+	</div>
+	<div id="wrapper" class="clearfix">
+		<div id="content">
+<h2 class="archive-title tag">notes</h2>
+
+
+  
+    <article class="post">
+	
+	<div class="post-content">
+		<header>
+			
+  
+    <h1 class="title"><a href="/2011/09/18/learning-javascript-notes/">《javascript 学习指南》读书笔记</a></h1>
+  
+
+			
+				<time datetime="2011-09-18T13:41:20.000Z">2011 Sep 18</time>
+			
+		</header>
+		<div class="entry">
+			
+				<p>1. 驼峰式命名，类名首字母大写，变量名首字母小写。 </p>
+<p>2. 字符串转换 <pre><span style="color: #003366; font-weight: bold">var</span> strValue <span style="color: #339933">=</span> “<span style="color: #cc0000">4</span>”<span style="color: #339933">+</span><span style="color: #cc0000">3</span><span style="color: #339933">+</span><span style="color: #cc0000">1</span>&nbsp;&nbsp;&nbsp; <span style="font-style: italic; color: #006600">//431</span></p>
+<p><span style="color: #003366; font-weight: bold">var</span> strValue<span style="color: #339933">=</span><span style="color: #cc0000">4</span><span style="color: #339933">+</span><span style="color: #cc0000">3</span><span style="color: #339933">+</span>”<span style="color: #cc0000">1</span>”&nbsp;&nbsp;&nbsp; <span style="font-style: italic; color: #006600">//71</span>
+&nbsp; </pre></p>
+<p><p>3. String 函数转换，其中对象转换成 “[object “+className+”]” 比如 String(document) //[object HTMLDocument] </p>
+<p>4. 双感叹 ！！ 可显示的将数字或字符串转换成布尔值。 </p>
+<p>5. 常量： const VALUE = 1 ；常量可以是任意值，一般为全局常量，名称习惯用大写以示区别。 </p>
+<p>6. 赋值， var nValue1,nValue2 = 3; //nValu undefined 所有二元操作符都可对字符串操作，但必须保证字符串可转换成数值。 </p>
+<p>7. 逻辑判断，基于最短路径，第一个表达式为资源消耗最少的，如需要检查变量是否为空或未定义，先进行如下检查： if ((nValue != null) &amp;&amp; (nValue&gt;8)) </p>
+<p>8. For…in 循环会遍历对象及其原型的方法和属性，并将键名（方法及属性的名称）逐一赋给在 in 之前的变量。 </p>
+<p>9. 当在基本数据类型上调用对象方法时，Javascript 将创建基本数据类型的对象实例，执行方法调用，并销毁该临时对象。该原则同样适用于数字和布尔等数据类型。 </p>
+<p>10. 对象方法的静态方法不是基于实例的，而是直接为对象类调用，所有的 Math 对象的方法都是静态方法 var newNum = Math.abs(oldNum);</p>
+<p>11. Number 类的 5 个属性只可以通过 Number 对象进行访问： </p>
+<ul>
+<li>Number.MAX_VALUE javascript 所能表示的最大数值<li>Number.MIN_VALUE javascript 所能表示的最小数值<li>Number.NaN 表示不是数字<li>Number.NEGATIVE_INFINITY 表示负无穷<li>Number.POSITIVE_INFINITY 表示正无穷</li>
+</ul>
+<p>12. 函数的参数传递：值传递和引用传递： </p>
+<ul>
+<li>传递变量时，变量被复制后在函数中引用，函数中对变量的修改不会修改函数外部原始变量的值。<li>传递对象时候，是引用传递，可以访问到对象的属性和方法，对对象的任何修改会反应到函数外部。<li>传递函数的时候，带上圆括号讲立即执行函数，并将返回值传递进去。</li>
+</ul>
+<p>13. 函数定义方式总结，共三种： </p>
+<ul>
+<li>声明式函数： Function functionname (param1,param2,…,param) { Function statements }<li>使用函数构造器创建匿名函数（动态）： var variable = new Function (“param1”, “param2”,…,”paramn”,”function body”); 解析创建的动态函数在调用后即删除，在循环中，可每次循环创建一次。<li>函数字面量： Var func = function (params) { Statements; } 只被解析一次，除了赋值给一个变量外，与声明式函数是类似的。可以方便的实现把一个函数作为另一个函数的参数。</li>
+</ul>
+<p>14. 闭包：每当 javascript 应用程序创建新的作用范围时，如果需要的话将创建相关的 scoping bubble 以封装这个作用范围。这将应用在函数中，它将在自己的作用范围内执行。通常，当函数结束时该作用范围就会释放，因为不在需要了，但，当一个内部函数向外部应用程序返回一个值，并赋给一个外部变量时，内部函数的作用范围就将附加到外部函数上，然后再附加到调用它们的应用程序中，这样才能保证内部函数和外部函数的完整性。返回一个在其他函数中内部对象形式创建的函数字面量，然后将其赋值给调用它的应用程序中的一个变量，这就是闭包。</p>
+<p>15. 对象检测的技巧在于知道要检测哪个想，以及知道如何“表示”要检测的对象（确保检测的是对像是否定义，而不是是否存在。）</p>
+<p>16. 冒泡机制：事件由最内部元素向外一次触发事件。 事件捕获机制和事件处理机制（event-capturing 或 cascade-down）：事件由最外层开始触发。</p>
+<p>17. IE 中内存消耗问题，即使刷新页面，也会为每次连续载入页面留出相应的内存，这样，一会儿就消耗大量的内存，为了避免，要跟踪 window 的 unload 事件，然后调用 detachEvent 方法清理事件。 </p>
+<p>18. 修改列表, 添加： opts[opts.length] = new Option (“option Four”, “opt 4”); </p>
+<p>19. 删除其中某个：opts[2] = null. 设置为 null，会重新安排数组。 删除所有：opts.length = 0; </p>
+<p>20. 正则表达式 <a href="http://regexlib.com"><a href="http://regexlib.com">http://regexlib.com</a></a> </p>
+<p>21. 访问 BOM 中对象可用数组索引 name 属性 id 属性 </p>
+<p>22. Javascript 设置 CSS ，属性名 float 是特例。IE 中为 style Float, 其他是 cssFloat. </p>
+<p>23. 当访问一个方法时，Jacascript 引擎首先讲从最初对象实现中找相应属性 / 方法。如果没有找到，就会在 prototype 中找相应属性 / 方法。只有当引擎无法在全局对象实现或 prototype 中找到该属性或方法时，才会寻找在程序中为中添加到变量上的方法。 </p>
+<p>因为人民邮电出版社的第二版中译本翻译太差了，所以后面几张讲 ajax 的就没有记录笔记了，这些笔记也记得估计只有我看得懂，差不多都是自己理解了后再自己复述出来的，都不知道对不对。 现在在看 《javascript 高级程序设计》，这本书感觉非常好，貌似翻译也好了点，正努力啃呢。</p>
+
+			
+		</div>
+		<footer>
+			
+				
+					<div class="alignleft">
+						<a href="/2011/09/18/learning-javascript-notes/#more" class="more-link">Read More</a>
+					</div>
+				
+				
+
+			
+		</footer>
+	</div>
+</article>
+
+
+  
+
+  <nav id="pagination" class="clearfix">
+  
+  
+</nav>
+</div>
+		<aside id="widget" class="clearfix">		
+			
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Blog-fix/">Blog-fix</a><small>11</small></li>
+  
+    <li><a href="/categories/Codex/">Codex</a><small>8</small></li>
+  
+    <li><a href="/categories/Blog-fix/Codex/">Codex</a><small>1</small></li>
+  
+    <li><a href="/categories/Life/">Life</a><small>78</small></li>
+  
+    <li><a href="/categories/Tutor/">Tutor</a><small>18</small></li>
+  
+    <li><a href="/categories/Codex/Tutor/">Tutor</a><small>1</small></li>
+  
+    <li><a href="/categories/Life/Uncategorized/">Uncategorized</a><small>4</small></li>
+  
+    <li><a href="/categories/Uncategorized/">Uncategorized</a><small>15</small></li>
+  
+    <li><a href="/categories/Vision/">Vision</a><small>40</small></li>
+  
+  </ul>
+</div>
+
+		
+			
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/GTD/" style="font-size: 16.25px;">GTD</a><a href="/tags/PKM/" style="font-size: 15.50px;">PKM</a><a href="/tags/QQ/" style="font-size: 15.25px;">QQ</a><a href="/tags/cctv/" style="font-size: 15.00px;">cctv</a><a href="/tags/javascript/" style="font-size: 16.00px;">javascript</a><a href="/tags/meme/" style="font-size: 14.75px;">meme</a><a href="/tags/twitter/" style="font-size: 17.50px;">twitter</a><a href="/tags/世博/" style="font-size: 11.50px;">世博</a><a href="/tags/分享/" style="font-size: 13.00px;">分享</a><a href="/tags/前端/" style="font-size: 11.25px;">前端</a><a href="/tags/博客维护/" style="font-size: 19.00px;">博客维护</a><a href="/tags/参观/" style="font-size: 11.75px;">参观</a><a href="/tags/团队/" style="font-size: 12.50px;">团队</a><a href="/tags/图书/" style="font-size: 13.75px;">图书</a><a href="/tags/备份/" style="font-size: 13.50px;">备份</a><a href="/tags/学习/" style="font-size: 17.75px;">学习</a><a href="/tags/思路/" style="font-size: 14.00px;">思路</a><a href="/tags/总结/" style="font-size: 16.50px;">总结</a><a href="/tags/感想/" style="font-size: 19.50px;">感想</a><a href="/tags/手机/" style="font-size: 15.75px;">手机</a><a href="/tags/斯路/" style="font-size: 12.25px;">斯路</a><a href="/tags/旅游/" style="font-size: 12.00px;">旅游</a><a href="/tags/旅途/" style="font-size: 13.25px;">旅途</a><a href="/tags/日记/" style="font-size: 19.75px;">日记</a><a href="/tags/日食/" style="font-size: 10.50px;">日食</a><a href="/tags/春节/" style="font-size: 18.25px;">春节</a><a href="/tags/格莱美/" style="font-size: 10.00px;">格莱美</a><a href="/tags/榜单/" style="font-size: 10.25px;">榜单</a><a href="/tags/气场/" style="font-size: 12.75px;">气场</a><a href="/tags/网络/" style="font-size: 14.50px;">网络</a><a href="/tags/聚会/" style="font-size: 11.00px;">聚会</a><a href="/tags/节日/" style="font-size: 18.75px;">节日</a><a href="/tags/观测/" style="font-size: 10.75px;">观测</a><a href="/tags/视频/" style="font-size: 18.00px;">视频</a><a href="/tags/计划/" style="font-size: 17.25px;">计划</a><a href="/tags/译文/" style="font-size: 17.00px;">译文</a><a href="/tags/读后感/" style="font-size: 14.25px;">读后感</a><a href="/tags/资源/" style="font-size: 16.75px;">资源</a><a href="/tags/软件/" style="font-size: 18.50px;">软件</a><a href="/tags/音乐/" style="font-size: 19.25px;">音乐</a>
+  </div>
+</div>
+
+		
+			<div class="widget blogroll">
+  <h3 class="title">友情链接</h3>	
+	<ul>
+		
+			<li><a href="http://zhuli.me">Leigh</a></li>
+		
+			<li><a href="http://zoechan.me">Zoe</a></li>
+		
+			<li><a href="http://test">Test</a></li>
+		
+	</ul>
+</div>
+		
+</aside>
+	</div>
+	<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"zhulime"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

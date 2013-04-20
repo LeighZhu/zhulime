@@ -1,0 +1,205 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Tutor | Leigh:// 斯路</title>
+  <meta name="author" content="Leigh Zhu">
+  
+  <meta name="description" content="Personal Blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Leigh:// 斯路"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Leigh:// 斯路" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+</head>
+
+
+<body>
+	<div id="stick">
+		<header id="header"><hgroup>
+	<h1><a href="/">Leigh:// 斯路</a></h1>
+	<h2>行于斯路…</h2>
+</hgroup>
+<nav id="header-nav" class="clearfix">
+	<ul>
+		
+			<li><a href="/">Home</a></li>
+		
+			<li><a href="/archives">Archives</a></li>
+		
+	</ul>
+</nav>
+<nav id="ext-nav" class="clearfix">
+	<ul>
+		
+	</ul>
+</nav></header>
+		<footer id="footer"><p class="copy">
+	
+	&copy; 2013 Leigh Zhu
+	
+</p></footer>
+	</div>
+	<div id="wrapper" class="clearfix">
+		<div id="content">
+<h2 class="archive-title category">Tutor</h2>
+
+
+  
+    <article class="post">
+	
+	<div class="post-content">
+		<header>
+			
+  
+    <h1 class="title"><a href="/2012/02/29/jailbreak-and-backup-kindle-touch/">Kindle 折腾起步，越狱及备份</a></h1>
+  
+
+			
+				<time datetime="2012-02-29T07:27:06.000Z">2012 Feb 29</time>
+			
+		</header>
+		<div class="entry">
+			
+				<p>所谓越狱，可能大家听到得比较多的是水果产品的越狱，大家对越狱可能也有所误解，所谓“越狱”，就是指获得自由，对系统软件来说，有就是获得 root/ 高权限。</p>
+<p>所有的折腾，比如改字体和去广告，换屏保等等，都需要先越狱。</p>
+<p>需要注意的是，Kindle 的固件升级是增量更新，所以在升级之前，需要把所有的 hack 都还原，否则校验会失败，升级不成功，所以，在做每一步之前，请先明确，你知道如何还原它，本文也介绍了一种备份方法，有条件的，务必备份一下，否则，反厂修理是一个漫长又痛苦的过程。</p>
+<p>现在 Kindle Touch 的固件版本是 5.0.3, 之前 Yifan Lu 的 mp3 越狱 bug 已经被 Amazon 修复，但幸于 MobileRead 论坛的 <a href="http://www.mobileread.com/forums/showpost.php?p=1902438&amp;postcount=41">ixtab</a> 发现了 <a href="http://www.mobileread.com/forums/attachment.php?attachmentid=80560&amp;d=1325262029">data.tar.gz</a>  的方法，一样可以越狱。对此， Yifan Lu 更新了相应的越狱包（下<a href="http://yifan.lu/p/kindle-touch-jailbreak">载地址</a>/<a href="http://www.mobileread.com/forums/attachment.php?attachmentid=80560&amp;d=1325262029">备用 ixtab 的文件</a>）</p>
+<p>推荐使用 Yifan Lu 准备的包，里面包含了反越狱文件。</p>
+<p>越狱很简单，拷贝 data.tar.gz 拷贝到 kindle 根目录，然后安全弹出，拔掉 usb ，重启 (Menu -&gt; Settings -&gt; Menu -&gt; Restart)，看到一个名为 You are Jailbroken 越狱就完成了。</p>
+<p>接下来是安装 Yifan Lu 的 <a href="https://github.com/downloads/yifanlu/KindleTool/simple_usbnet_1.1.zip">Simple usbnet update (supports wifi ssh and resetting root password)</a> ，这也是很多 hack 的基础，很简单，下载文件（<a href="https://github.com/downloads/yifanlu/KindleTool/simple_usbnet_1.1.zip">地址</a>），解压缩后把 <em>*</em>.bin 文件放于 kindle 根目录，然后点击 Menu -&gt; Settings -&gt; Menu -&gt; Update Your Kindle 等待重启即可。</p>
+<p>安装完后，在 Home 界面，点击最上方 Tap to Search 框，输入 ;un 即可打开 / 关闭 USBNetwork，然后链接电脑即可，接下来，如果你的电脑是 Windows 系统，则需要安装相关 ssh 软件进行下一步操作。</p>
+<p>提示：建议修改 ssh 的 root 密码，在 Kindle 搜索框继续输入 <tt>;un password &lt;new root password&gt;</tt> 设置密码。</p>
+<p>而对于 Linux 系统，打开终端 <tt>ifconfig usb0 192.168.15.1; ssh root@192.168.15.244</tt> 即可链接到你的 kindle，链接完成后，如果有英文提示你 mntroot 只读，则表示链接成功。</p>
+<p>如果你现在正在使用 Linux 系统，那么可以开始对 Kindle 进行备份了。</p>
+<p>先介绍下 kindle touch 的分区：</p>
+<ol>
+<li>分区 1（mmcblk0p1/ EXT3，350 MB）：根文件系统。包含操作系统和框架文件。如果这个分区被破坏，Kindle Touch 就不能正常使用了。</li>
+<li>分区 2（EXT3，64 MB）：紧急恢复系统，你平时不应该去看，更不应该去动手的分区。</li>
+<li>分区 3（EXT3，32 MB）：挂载于 /var/local，包含本地设置。</li>
+<li>分区 4（FAT32，3.3 GB）：即平时已移动盘显示，存放书记文档的地方，挂载在 /mnt/us 下。
+因此，最需要做好备份的就是 1 和 2 分区了。</li>
+</ol>
+<p>好了，那么我们打开一个终端窗口，没错的话，现在你有两个终端窗口，一个是之前 ssh 链接 kindle Touch 的，我们称其 kindle，另一个是刚刚打开的，没有执行任何命令的窗口，我们称其 host</p>
+<p>依次在 host 执行 <tt>nc -l 31337|dd of=mmcblk0p1.bin</tt>  在 kindle 执行 <tt>dd if=/dev/mmcblk0p1|nc 192.168.15.1 31337</tt></p>
+<p>执行完之后，将上述命令中 <tt>mmcblk0p1</tt> 改为 <tt>mmcblk0p2,<tt>mmcblk0p3,<tt>mmcblk0p4 即可备份所有四个分区。</tt></tt></tt></p>
+<p>这样就完成了备份。</p>
+
+			
+		</div>
+		<footer>
+			
+				
+					<div class="alignleft">
+						<a href="/2012/02/29/jailbreak-and-backup-kindle-touch/#more" class="more-link">Read More</a>
+					</div>
+				
+				
+
+			
+		</footer>
+	</div>
+</article>
+
+
+  
+
+  <nav id="pagination" class="clearfix">
+  
+  
+</nav>
+</div>
+		<aside id="widget" class="clearfix">		
+			
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Blog-fix/">Blog-fix</a><small>11</small></li>
+  
+    <li><a href="/categories/Codex/">Codex</a><small>8</small></li>
+  
+    <li><a href="/categories/Blog-fix/Codex/">Codex</a><small>1</small></li>
+  
+    <li><a href="/categories/Life/">Life</a><small>78</small></li>
+  
+    <li><a href="/categories/Tutor/">Tutor</a><small>18</small></li>
+  
+    <li><a href="/categories/Codex/Tutor/">Tutor</a><small>1</small></li>
+  
+    <li><a href="/categories/Life/Uncategorized/">Uncategorized</a><small>4</small></li>
+  
+    <li><a href="/categories/Uncategorized/">Uncategorized</a><small>15</small></li>
+  
+    <li><a href="/categories/Vision/">Vision</a><small>40</small></li>
+  
+  </ul>
+</div>
+
+		
+			
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/GTD/" style="font-size: 16.25px;">GTD</a><a href="/tags/PKM/" style="font-size: 15.50px;">PKM</a><a href="/tags/QQ/" style="font-size: 15.25px;">QQ</a><a href="/tags/cctv/" style="font-size: 15.00px;">cctv</a><a href="/tags/javascript/" style="font-size: 16.00px;">javascript</a><a href="/tags/meme/" style="font-size: 14.75px;">meme</a><a href="/tags/twitter/" style="font-size: 17.50px;">twitter</a><a href="/tags/世博/" style="font-size: 11.50px;">世博</a><a href="/tags/分享/" style="font-size: 13.00px;">分享</a><a href="/tags/前端/" style="font-size: 11.25px;">前端</a><a href="/tags/博客维护/" style="font-size: 19.00px;">博客维护</a><a href="/tags/参观/" style="font-size: 11.75px;">参观</a><a href="/tags/团队/" style="font-size: 12.50px;">团队</a><a href="/tags/图书/" style="font-size: 13.75px;">图书</a><a href="/tags/备份/" style="font-size: 13.50px;">备份</a><a href="/tags/学习/" style="font-size: 17.75px;">学习</a><a href="/tags/思路/" style="font-size: 14.00px;">思路</a><a href="/tags/总结/" style="font-size: 16.50px;">总结</a><a href="/tags/感想/" style="font-size: 19.50px;">感想</a><a href="/tags/手机/" style="font-size: 15.75px;">手机</a><a href="/tags/斯路/" style="font-size: 12.25px;">斯路</a><a href="/tags/旅游/" style="font-size: 12.00px;">旅游</a><a href="/tags/旅途/" style="font-size: 13.25px;">旅途</a><a href="/tags/日记/" style="font-size: 19.75px;">日记</a><a href="/tags/日食/" style="font-size: 10.50px;">日食</a><a href="/tags/春节/" style="font-size: 18.25px;">春节</a><a href="/tags/格莱美/" style="font-size: 10.00px;">格莱美</a><a href="/tags/榜单/" style="font-size: 10.25px;">榜单</a><a href="/tags/气场/" style="font-size: 12.75px;">气场</a><a href="/tags/网络/" style="font-size: 14.50px;">网络</a><a href="/tags/聚会/" style="font-size: 11.00px;">聚会</a><a href="/tags/节日/" style="font-size: 18.75px;">节日</a><a href="/tags/观测/" style="font-size: 10.75px;">观测</a><a href="/tags/视频/" style="font-size: 18.00px;">视频</a><a href="/tags/计划/" style="font-size: 17.25px;">计划</a><a href="/tags/译文/" style="font-size: 17.00px;">译文</a><a href="/tags/读后感/" style="font-size: 14.25px;">读后感</a><a href="/tags/资源/" style="font-size: 16.75px;">资源</a><a href="/tags/软件/" style="font-size: 18.50px;">软件</a><a href="/tags/音乐/" style="font-size: 19.25px;">音乐</a>
+  </div>
+</div>
+
+		
+			<div class="widget blogroll">
+  <h3 class="title">友情链接</h3>	
+	<ul>
+		
+			<li><a href="http://zhuli.me">Leigh</a></li>
+		
+			<li><a href="http://zoechan.me">Zoe</a></li>
+		
+			<li><a href="http://test">Test</a></li>
+		
+	</ul>
+</div>
+		
+</aside>
+	</div>
+	<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"zhulime"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>第 5 页 | 归档：2012 | Leigh:// 斯路</title>
+  <meta name="author" content="Leigh Zhu">
+  
+  <meta name="description" content="Personal Blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Leigh:// 斯路"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Leigh:// 斯路" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+</head>
+
+
+<body>
+	<div id="stick">
+		<header id="header"><hgroup>
+	<h1><a href="/">Leigh:// 斯路</a></h1>
+	<h2>行于斯路…</h2>
+</hgroup>
+<nav id="header-nav" class="clearfix">
+	<ul>
+		
+			<li><a href="/">Home</a></li>
+		
+			<li><a href="/archives">Archives</a></li>
+		
+	</ul>
+</nav>
+<nav id="ext-nav" class="clearfix">
+	<ul>
+		
+	</ul>
+</nav></header>
+		<footer id="footer"><p class="copy">
+	
+	&copy; 2013 Leigh Zhu
+	
+</p></footer>
+	</div>
+	<div id="wrapper" class="clearfix">
+		<div id="content">
+<h2 class="archive-title">2012</h2>
+
+
+  
+    <article class="post">
+	
+	<div class="post-content">
+		<header>
+			
+  
+    <h1 class="title"><a href="/2012/04/27/step-into-chrome-extension-develop/">Chrome 扩展开发初涉</a></h1>
+  
+
+			
+				<time datetime="2012-04-27T02:01:02.000Z">2012 Apr 27</time>
+			
+		</header>
+		<div class="entry">
+			
+				<p>翻阅 Google Reader 的时候，看到 <a href="http://uicss.cn/chrome-extensions/">霍凯这篇文章</a> ，又去看了<a href="http://code.google.com/chrome/extensions/getstarted.html">官方的文档</a>于是就发生了以下的事。
+正如 霍凯 那篇文章中所说，开发一个 Chrome 扩展，首先，需要建立一个文件夹，新建一个 manifest.json 文件：</p>
+<p><pre>{
+ &quot;name&quot;: &quot;Tonton&#39;s Pet Snake！&quot;,
+ &quot;version&quot;: &quot;0.1&quot;,
+ &quot;description&quot;: &quot;Gready Snake like game&quot;,
+ &quot;browser_action&quot;: {
+ &quot;default_icon&quot;: &quot;icons/icon_19.png&quot;,
+ &quot;default_popup&quot;: &quot;files/popup.html&quot;
+ },
+ &quot;icons&quot;: {
+ &quot;16&quot;: &quot;icons/icon_16.png&quot;,
+ &quot;19&quot;: &quot;icons/icon_19.png&quot;,
+ &quot;32&quot;: &quot;icons/icon_32.png&quot;,
+ &quot;48&quot;: &quot;icons/icon_48.png&quot;,
+ &quot;128&quot;: &quot;icons/icon_128.png&quot;
+ }
+}</pre>
+相信这些字段都不用解释了，故名则知意。
+接下来就是准备好你的 icon ，当然你也可以不必放这么多大小的图标，如下所示去掉后面的 icons 完全不会有问题，只是某些情况下，你的应用程序图标会不太好看而已。</p>
+<p>&nbsp;</p>
+<p><pre>{
+ &quot;name&quot;: &quot;Tonton&#39;s Pet Snake！&quot;,
+ &quot;version&quot;: &quot;0.1&quot;,
+ &quot;description&quot;: &quot;Gready Snake like game&quot;,
+ &quot;browser_action&quot;: {
+ &quot;default_icon&quot;: &quot;icons/icon.png&quot;,
+ &quot;default_popup&quot;: &quot;files/popup.html&quot;
+ }
+}</pre>
+然后就是前端最普通的工作了，编辑你的 popup.html ，添加各种事件，行为等等。
+如果需要测试，打开 <a href="chrome://settings/extensions">chrome://settings/extensions</a>
+勾选 “Develpoer mode” 然后点击 “Load unpacked extension...” 选择你之前新建的扩展文件夹即可。
+如果开发完成，那就点击 “Pack extension” 将你的扩展打包。打包的时候，会让你选择扩展目录和密钥文件，扩展目录即你之前 Load 的那个，密钥文件（xxx.pem）的话是用于之后更新扩展所用，第一次打包时不用选择，第一次打包完成后，请将这个文件保存好，下次更新时需要用到。
+如此便完成了简单的扩展的开发。
+另外，360 浏览器团队也翻译了 Google 的官方开发文档，需要的朋友可以前去查看：<a href="http://open.chrome.360.cn/html/dev_doc.html">360 翻译的开发文档</a>
+附上我的第一个 Chrome 扩展，也是我的第一个 js 游戏作品：
+<strong>墩墩的宠物蛇（贪吃蛇类游戏）<a href="http://zhuli.me/wp-content/uploads/2012/04/tontonsnake.crx">Tonton&#39;s snake</a></strong></p>
+
+			
+		</div>
+		<footer>
+			
+				
+					<div class="alignleft">
+						<a href="/2012/04/27/step-into-chrome-extension-develop/#more" class="more-link">Read More</a>
+					</div>
+				
+				
+
+			
+		</footer>
+	</div>
+</article>
+
+
+  
+    <article class="post">
+	
+	<div class="post-content">
+		<header>
+			
+  
+    <h1 class="title"><a href="/2012/04/20/summary-for-hziee-edu-cn-working/">信息工程院网的工作所犯问题总结</a></h1>
+  
+
+			
+				<time datetime="2012-04-20T08:14:20.000Z">2012 Apr 20</time>
+			
+		</header>
+		<div class="entry">
+			
+				<p>今年 2 月、3 月，有幸成为信息工程学院院网<a href="http://www.hziee.edu.cn"> [<a href="http://www.hziee.edu.cn">http://www.hziee.edu.cn</a></a> ] 制作人，承担了前端页面方面的工作。</p>
+<p>现在院网基本进入正常运行。总结一些另自己后悔的问题。</p>
+<p>1. 起初未和后端的同学，pjsky 协调好字符编码。
+由于我本人长期工作在 UTF-8 编码环境下，自然而然选择了 UTF-8 作为前端实现的编码方案，知道后来整合测试才知道，后端同学用了 GBK ，于是我被迫转码了，导致了我这边 GBK 支持的编辑器不太适应，调试修改变得很头疼。</p>
+<p>2. 对于 HTML 文稿实现时，没有形成成熟的 id 与 class 命名方案。
+这是因为自己的经验还是不够多，没有积累下一整套的自己的方案，而正是开工后，也一直没有时间去看一些成熟的框架，学习他们的命名方案。</p>
+<p>3. 院网工作开始时，没有部署一些版本控制方案。
+这直接导致了修改方案时，不能代码回档！！！！  T T   不过，以现在的硬件资源情况，也没有一种好的方式。。。</p>
+<p>这几个对于我来说，是相当苦恼的问题，好在基本是解决了，接下去的任务就是要思考怎么把这一堆代码留给下一届的继承人了。</p>
+<p>好吧。。继续努力吧。</p>
+
+			
+		</div>
+		<footer>
+			
+				
+					<div class="alignleft">
+						<a href="/2012/04/20/summary-for-hziee-edu-cn-working/#more" class="more-link">Read More</a>
+					</div>
+				
+				
+
+			
+		</footer>
+	</div>
+</article>
+
+
+  
+    <article class="post">
+	
+	<div class="post-content">
+		<header>
+			
+  
+    <h1 class="title"><a href="/2012/03/14/kindle-touch-fonts-hack/">Kindle Touch 字体无痛修改</a></h1>
+  
+
+			
+				<time datetime="2012-03-14T02:20:13.000Z">2012 Mar 14</time>
+			
+		</header>
+		<div class="entry">
+			
+				<p>Kindle Touch 是原生支持中文的，所以直接显示中文，没有多大问题，但是仔细看的话，会发现，其显示中文的字体是无衬线的，啥叫无衬线呢，微软雅黑和黑体就是无衬线的，学过前端或者印刷或者平面等的同学都会知道，吴衬线字体，其实不适合作为正文的字体的，因为长时间看无衬线字体，会很疲劳，因此。另一个问题就是，有些字体，大小不一，颜色深浅不一，看着不是很舒服，于是，既然越狱了，就干脆改了字体。</p>
+<p>注意，一下步骤，需要<strong><span style="color: #ff0000;">先将系统越狱，以及安装 usbnetwork，并可以用 ssh 链接到 kindle</span></strong>，具体方法可见我 之前的一片文章《<a href="../2012/02/29/jailbreak-and-backup-kindle-touch.html" title="Permalink to Kindle 折腾起步，越狱及备份">Kindle 折腾起步，越狱及备份》 。 </a></p>
+<p>本文方法参考了以下几位前辈的文章：<a href="http://www.idndx.com/posts/knowing-kindle-touch-font-mechanism-and-get-the-best-way-to-replace-chinese-fonts.html">Dnxn</a> ，<a href="http://bbs.duokan.com/forum/thread-56918-1-2.html">windirt</a>， <a href="http://www.mobileread.com/forums/showthread.php?t=168765">ixtab</a> 。</p>
+<p>因为 Kindle Touch 实际上是基于 Linux ，加上 Java 虚拟机，以及一些框架构成的，所以，其字体配置其实就是 Linux 系统下的 Fontconfig 文件，也就是位于 /etc/fonts/ 下的 local.conf 配置文件。</p>
+<p>如果您对 Linux 不熟悉的话，可以看下这个文档 “<a href="http://www.360doc.com/content/05/0907/14/256_10866.shtml">Fontconfig 配置详解</a>” ，当然，如果您不愿意去费这力气，继续往下按照我的步骤就是。</p>
+<p>这是 local.conf 中关于字体的一段</p>
+<pre><code><span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #000080; font-weight: bold;"</span>&gt;</span>&amp;lt;alias&amp;gt;<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #000080; font-weight: bold;"</span>&gt;</span>    &amp;lt;family&amp;gt;<span class="tag">&lt;/<span class="title">span</span>&gt;</span>serif<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #000080; font-weight: bold;"</span>&gt;</span>&amp;lt;/family&amp;gt;<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #000080; font-weight: bold;"</span>&gt;</span>    &amp;lt;prefer&amp;gt;<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #000080; font-weight: bold;"</span>&gt;</span>    &amp;lt;family&amp;gt;<span class="tag">&lt;/<span class="title">span</span>&gt;</span>Caecilia Regular<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #000080; font-weight: bold;"</span>&gt;</span>&amp;lt;/family&amp;gt;<span class="tag">&lt;/<span class="title">span</span>&gt;</span> # 英文字体
+<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #000080; font-weight: bold;"</span>&gt;</span>    &amp;lt;family&amp;gt;<span class="tag">&lt;/<span class="title">span</span>&gt;</span>Kindle Symbol<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #000080; font-weight: bold;"</span>&gt;</span>&amp;lt;/family&amp;gt;<span class="tag">&lt;/<span class="title">span</span>&gt;</span> #KT 中用到的小图标字体
+<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #000080; font-weight: bold;"</span>&gt;</span>    &amp;lt;family&amp;gt;<span class="tag">&lt;/<span class="title">span</span>&gt;</span>HeiseiMaruGoth_JIS0213_E<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #000080; font-weight: bold;"</span>&gt;</span>&amp;lt;/family&amp;gt;<span class="tag">&lt;/<span class="title">span</span>&gt;</span> # 日文字体
+<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #000080; font-weight: bold;"</span>&gt;</span>    &amp;lt;family&amp;gt;<span class="tag">&lt;/<span class="title">span</span>&gt;</span>HangulGothicMTC-Medium_E<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #000080; font-weight: bold;"</span>&gt;</span>&amp;lt;/family&amp;gt;<span class="tag">&lt;/<span class="title">span</span>&gt;</span> # 韩文字体
+<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #000080; font-weight: bold;"</span>&gt;</span>    &amp;lt;family&amp;gt;<span class="tag">&lt;/<span class="title">span</span>&gt;</span>MHeiGB18030C-Medium_E<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #000080; font-weight: bold;"</span>&gt;</span>&amp;lt;/family&amp;gt;<span class="tag">&lt;/<span class="title">span</span>&gt;</span> # 简体中文字体
+<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #000080; font-weight: bold;"</span>&gt;</span>    &amp;lt;family&amp;gt;<span class="tag">&lt;/<span class="title">span</span>&gt;</span>MHeiC-Medium-Big5HKSCS_E<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #000080; font-weight: bold;"</span>&gt;</span>&amp;lt;/family&amp;gt;<span class="tag">&lt;/<span class="title">span</span>&gt;</span> # 正体中文字体
+<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #000080; font-weight: bold;"</span>&gt;</span>    &amp;lt;family&amp;gt;<span class="tag">&lt;/<span class="title">span</span>&gt;</span>Code2000<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #000080; font-weight: bold;"</span>&gt;</span>&amp;lt;/family&amp;gt;<span class="tag">&lt;/<span class="title">span</span>&gt;</span> # 同样是英文字体，备用
+<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #000080; font-weight: bold;"</span>&gt;</span>    &amp;lt;/prefer&amp;gt;<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #000080; font-weight: bold;"</span>&gt;</span>&amp;lt;/alias&amp;gt;<span class="tag">&lt;/<span class="title">span</span>&gt;</span>`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
+这是 serif 也就是衬线字体的配置部分，纵观整个 local.conf ，其实 serif ，sans-serif 的差别只有英文字体部分，而中文字体，只有一个 “MHeiGB18030C-Medium_E” ，而大家知道，日文中，也会有汉语字符，那些个深浅不一的字，就是先从“HeiseiMaruGoth_JIS0213_E”这个日文字体中找到了那个字，所以产生了这种情况，我们要做的，就是在这个字体之前，插入我们自定义的字体。
+方法大致如下：
+
+<span class="tag">&lt;<span class="title">pre</span>&gt;</span>`
+mntroot rw
+ln -s /mnt/us/fonts/99-leigh.conf /etc/fonts/conf.d/
+cd /usr/share/fonts
+mkdir leigh
+cd leigh
+ln -s /mnt/us/fonts/*.ttf .
+mkfontscale
+mkfontdir
+fc-cache -v -f
+mntroot ro
+killall cvm
+exit
+`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
+
+你可以下载我的字体配置文件：[下载地址](http://dl.dbank.com/c0jfcij0ky) <span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #ff0000;"</span>&gt;</span>Update: 根据大家反馈，网盘换至华为网盘。@2012.08.07<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+
+下面是回复默认的方法，同样需要 ssh 登录～
+<span class="tag">&lt;<span class="title">pre</span>&gt;</span>`
+mntroot rw
+rm -f /etc/fonts/conf.d/99-leigh.conf
+cd /usr/share/fonts
+rm -rf leigh
+fc-cache -v -f
+mntroot ro
+killall cvm
+exit
+</code></pre>
+<p>我的配置大致如下:
+定义 serif ：字体为 方正雅宋 ;
+定义 sans-serif ：字体为 华文细黑（常态），微软雅黑（粗体）// 原以为华文细黑是 sans-serif，结果貌似在 kindle 上看起来是 serif ，不管了，反正耶不用 sans-serif 看书，实在有需要或者有完美主义的朋友可以自己改成雅黑之类的
+condensed 则使用了微软正黑，如果繁体字的书，可以用这个字体看，也许效果会好一点。
+monospace 则是用了 ixtab 包里的 Bitstream Vera Sans Mono 字体，效果还不错。</p>
+<p>截图如下：
+目录页，因为有定义粗体字，所以不会出现 dnxn 的现象</p>
+<p><img src="http://pic.yupoo.com/lisposter/BPhGkNjn/Wr31r.gif" alt="">
+<img src="http://pic.yupoo.com/lisposter/BOw3e4Zc/hk4uE.gif" alt=""></p>
+<p>下面是中文效果，这个字体因该是 雅宋 字体。
+<img src="http://pic.yupoo.com/lisposter/BOw3elzw/YZhS.gif" alt="">
+下面是英文显示，因该是和原生没有区别的，因为我们是在日文字体之前插入我们的自定义字体，而没有覆盖掉英文的字体设置。
+<img src="http://pic.yupoo.com/lisposter/BOw3edLm/LtP5Y.gif" alt="">
+下面是新闻页的展示：
+<img src="http://pic.yupoo.com/lisposter/BOw3ejaQ/gNbOx.gif" alt=""></p>
+
+			
+		</div>
+		<footer>
+			
+				
+					<div class="alignleft">
+						<a href="/2012/03/14/kindle-touch-fonts-hack/#more" class="more-link">Read More</a>
+					</div>
+				
+				
+
+			
+		</footer>
+	</div>
+</article>
+
+
+  
+
+  <nav id="pagination" class="clearfix">
+  
+    <a href="/archives/2012/page/4/" class="alignleft prev">上一页</a>
+  
+  
+    <a href="/archives/2012/page/6/" class="alignright next">下一页</a>
+  
+</nav>
+</div>
+		<aside id="widget" class="clearfix">		
+			
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Blog-fix/">Blog-fix</a><small>11</small></li>
+  
+    <li><a href="/categories/Codex/">Codex</a><small>8</small></li>
+  
+    <li><a href="/categories/Blog-fix/Codex/">Codex</a><small>1</small></li>
+  
+    <li><a href="/categories/Life/">Life</a><small>78</small></li>
+  
+    <li><a href="/categories/Tutor/">Tutor</a><small>18</small></li>
+  
+    <li><a href="/categories/Codex/Tutor/">Tutor</a><small>1</small></li>
+  
+    <li><a href="/categories/Life/Uncategorized/">Uncategorized</a><small>4</small></li>
+  
+    <li><a href="/categories/Uncategorized/">Uncategorized</a><small>15</small></li>
+  
+    <li><a href="/categories/Vision/">Vision</a><small>40</small></li>
+  
+  </ul>
+</div>
+
+		
+			
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/GTD/" style="font-size: 16.25px;">GTD</a><a href="/tags/PKM/" style="font-size: 15.50px;">PKM</a><a href="/tags/QQ/" style="font-size: 15.25px;">QQ</a><a href="/tags/cctv/" style="font-size: 15.00px;">cctv</a><a href="/tags/javascript/" style="font-size: 16.00px;">javascript</a><a href="/tags/meme/" style="font-size: 14.75px;">meme</a><a href="/tags/twitter/" style="font-size: 17.50px;">twitter</a><a href="/tags/世博/" style="font-size: 11.50px;">世博</a><a href="/tags/分享/" style="font-size: 13.00px;">分享</a><a href="/tags/前端/" style="font-size: 11.25px;">前端</a><a href="/tags/博客维护/" style="font-size: 19.00px;">博客维护</a><a href="/tags/参观/" style="font-size: 11.75px;">参观</a><a href="/tags/团队/" style="font-size: 12.50px;">团队</a><a href="/tags/图书/" style="font-size: 13.75px;">图书</a><a href="/tags/备份/" style="font-size: 13.50px;">备份</a><a href="/tags/学习/" style="font-size: 17.75px;">学习</a><a href="/tags/思路/" style="font-size: 14.00px;">思路</a><a href="/tags/总结/" style="font-size: 16.50px;">总结</a><a href="/tags/感想/" style="font-size: 19.50px;">感想</a><a href="/tags/手机/" style="font-size: 15.75px;">手机</a><a href="/tags/斯路/" style="font-size: 12.25px;">斯路</a><a href="/tags/旅游/" style="font-size: 12.00px;">旅游</a><a href="/tags/旅途/" style="font-size: 13.25px;">旅途</a><a href="/tags/日记/" style="font-size: 19.75px;">日记</a><a href="/tags/日食/" style="font-size: 10.50px;">日食</a><a href="/tags/春节/" style="font-size: 18.25px;">春节</a><a href="/tags/格莱美/" style="font-size: 10.00px;">格莱美</a><a href="/tags/榜单/" style="font-size: 10.25px;">榜单</a><a href="/tags/气场/" style="font-size: 12.75px;">气场</a><a href="/tags/网络/" style="font-size: 14.50px;">网络</a><a href="/tags/聚会/" style="font-size: 11.00px;">聚会</a><a href="/tags/节日/" style="font-size: 18.75px;">节日</a><a href="/tags/观测/" style="font-size: 10.75px;">观测</a><a href="/tags/视频/" style="font-size: 18.00px;">视频</a><a href="/tags/计划/" style="font-size: 17.25px;">计划</a><a href="/tags/译文/" style="font-size: 17.00px;">译文</a><a href="/tags/读后感/" style="font-size: 14.25px;">读后感</a><a href="/tags/资源/" style="font-size: 16.75px;">资源</a><a href="/tags/软件/" style="font-size: 18.50px;">软件</a><a href="/tags/音乐/" style="font-size: 19.25px;">音乐</a>
+  </div>
+</div>
+
+		
+			<div class="widget blogroll">
+  <h3 class="title">友情链接</h3>	
+	<ul>
+		
+			<li><a href="http://zhuli.me">Leigh</a></li>
+		
+			<li><a href="http://zoechan.me">Zoe</a></li>
+		
+			<li><a href="http://test">Test</a></li>
+		
+	</ul>
+</div>
+		
+</aside>
+	</div>
+	<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"zhulime"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

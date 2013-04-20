@@ -1,0 +1,337 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>第 6 页 | 归档：2012 | Leigh:// 斯路</title>
+  <meta name="author" content="Leigh Zhu">
+  
+  <meta name="description" content="Personal Blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Leigh:// 斯路"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Leigh:// 斯路" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+</head>
+
+
+<body>
+	<div id="stick">
+		<header id="header"><hgroup>
+	<h1><a href="/">Leigh:// 斯路</a></h1>
+	<h2>行于斯路…</h2>
+</hgroup>
+<nav id="header-nav" class="clearfix">
+	<ul>
+		
+			<li><a href="/">Home</a></li>
+		
+			<li><a href="/archives">Archives</a></li>
+		
+	</ul>
+</nav>
+<nav id="ext-nav" class="clearfix">
+	<ul>
+		
+	</ul>
+</nav></header>
+		<footer id="footer"><p class="copy">
+	
+	&copy; 2013 Leigh Zhu
+	
+</p></footer>
+	</div>
+	<div id="wrapper" class="clearfix">
+		<div id="content">
+<h2 class="archive-title">2012</h2>
+
+
+  
+    <article class="post">
+	
+	<div class="post-content">
+		<header>
+			
+  
+    <h1 class="title"><a href="/2012/02/29/jailbreak-and-backup-kindle-touch/">Kindle 折腾起步，越狱及备份</a></h1>
+  
+
+			
+				<time datetime="2012-02-29T07:27:06.000Z">2012 Feb 29</time>
+			
+		</header>
+		<div class="entry">
+			
+				<p>所谓越狱，可能大家听到得比较多的是水果产品的越狱，大家对越狱可能也有所误解，所谓“越狱”，就是指获得自由，对系统软件来说，有就是获得 root/ 高权限。</p>
+<p>所有的折腾，比如改字体和去广告，换屏保等等，都需要先越狱。</p>
+<p>需要注意的是，Kindle 的固件升级是增量更新，所以在升级之前，需要把所有的 hack 都还原，否则校验会失败，升级不成功，所以，在做每一步之前，请先明确，你知道如何还原它，本文也介绍了一种备份方法，有条件的，务必备份一下，否则，反厂修理是一个漫长又痛苦的过程。</p>
+<p>现在 Kindle Touch 的固件版本是 5.0.3, 之前 Yifan Lu 的 mp3 越狱 bug 已经被 Amazon 修复，但幸于 MobileRead 论坛的 <a href="http://www.mobileread.com/forums/showpost.php?p=1902438&amp;postcount=41">ixtab</a> 发现了 <a href="http://www.mobileread.com/forums/attachment.php?attachmentid=80560&amp;d=1325262029">data.tar.gz</a>  的方法，一样可以越狱。对此， Yifan Lu 更新了相应的越狱包（下<a href="http://yifan.lu/p/kindle-touch-jailbreak">载地址</a>/<a href="http://www.mobileread.com/forums/attachment.php?attachmentid=80560&amp;d=1325262029">备用 ixtab 的文件</a>）</p>
+<p>推荐使用 Yifan Lu 准备的包，里面包含了反越狱文件。</p>
+<p>越狱很简单，拷贝 data.tar.gz 拷贝到 kindle 根目录，然后安全弹出，拔掉 usb ，重启 (Menu -&gt; Settings -&gt; Menu -&gt; Restart)，看到一个名为 You are Jailbroken 越狱就完成了。</p>
+<p>接下来是安装 Yifan Lu 的 <a href="https://github.com/downloads/yifanlu/KindleTool/simple_usbnet_1.1.zip">Simple usbnet update (supports wifi ssh and resetting root password)</a> ，这也是很多 hack 的基础，很简单，下载文件（<a href="https://github.com/downloads/yifanlu/KindleTool/simple_usbnet_1.1.zip">地址</a>），解压缩后把 <em>*</em>.bin 文件放于 kindle 根目录，然后点击 Menu -&gt; Settings -&gt; Menu -&gt; Update Your Kindle 等待重启即可。</p>
+<p>安装完后，在 Home 界面，点击最上方 Tap to Search 框，输入 ;un 即可打开 / 关闭 USBNetwork，然后链接电脑即可，接下来，如果你的电脑是 Windows 系统，则需要安装相关 ssh 软件进行下一步操作。</p>
+<p>提示：建议修改 ssh 的 root 密码，在 Kindle 搜索框继续输入 <tt>;un password &lt;new root password&gt;</tt> 设置密码。</p>
+<p>而对于 Linux 系统，打开终端 <tt>ifconfig usb0 192.168.15.1; ssh root@192.168.15.244</tt> 即可链接到你的 kindle，链接完成后，如果有英文提示你 mntroot 只读，则表示链接成功。</p>
+<p>如果你现在正在使用 Linux 系统，那么可以开始对 Kindle 进行备份了。</p>
+<p>先介绍下 kindle touch 的分区：</p>
+<ol>
+<li>分区 1（mmcblk0p1/ EXT3，350 MB）：根文件系统。包含操作系统和框架文件。如果这个分区被破坏，Kindle Touch 就不能正常使用了。</li>
+<li>分区 2（EXT3，64 MB）：紧急恢复系统，你平时不应该去看，更不应该去动手的分区。</li>
+<li>分区 3（EXT3，32 MB）：挂载于 /var/local，包含本地设置。</li>
+<li>分区 4（FAT32，3.3 GB）：即平时已移动盘显示，存放书记文档的地方，挂载在 /mnt/us 下。
+因此，最需要做好备份的就是 1 和 2 分区了。</li>
+</ol>
+<p>好了，那么我们打开一个终端窗口，没错的话，现在你有两个终端窗口，一个是之前 ssh 链接 kindle Touch 的，我们称其 kindle，另一个是刚刚打开的，没有执行任何命令的窗口，我们称其 host</p>
+<p>依次在 host 执行 <tt>nc -l 31337|dd of=mmcblk0p1.bin</tt>  在 kindle 执行 <tt>dd if=/dev/mmcblk0p1|nc 192.168.15.1 31337</tt></p>
+<p>执行完之后，将上述命令中 <tt>mmcblk0p1</tt> 改为 <tt>mmcblk0p2,<tt>mmcblk0p3,<tt>mmcblk0p4 即可备份所有四个分区。</tt></tt></tt></p>
+<p>这样就完成了备份。</p>
+
+			
+		</div>
+		<footer>
+			
+				
+					<div class="alignleft">
+						<a href="/2012/02/29/jailbreak-and-backup-kindle-touch/#more" class="more-link">Read More</a>
+					</div>
+				
+				
+
+			
+		</footer>
+	</div>
+</article>
+
+
+  
+    <article class="post">
+	
+	<div class="post-content">
+		<header>
+			
+  
+    <h1 class="title"><a href="/2012/02/28/kindle-touch-unboxing/">Kindle Touch 海淘记</a></h1>
+  
+
+			
+				<time datetime="2012-02-28T12:50:59.000Z">2012 Feb 28</time>
+			
+		</header>
+		<div class="entry">
+			
+				<p>上个学期，也就是去年年底，听 Zoe 说，她同学的老师推荐他们买 Kindle， 于是，又激起了我曾经被放下的念头，正好赶上 Amazon 发布了 3 个新 Kindle，价格也相对之前有很大诱惑，于是。。。</p>
+<p>在多看看了那个用礼券及转运买 Kindle 的教程后，变更加有动力了，盘算了很久，决定也海淘一个。</p>
+<p>年后，找 @zyxfsky 买了 100 刀 Giftcard，在 2 月 5 日晚上下了订单。</p>
+<p>因为没有信用卡，于是只好用免费的配送——USPS，也就是美国邮政，从下单时间（美东时间 2 月 4 日 一直运到了 2 月 13 日才到达转运仓库，那是学会了，原来米国工人一定要有双休日的。。）</p>
+<p>之后就是转运了，用了比较新的转运——QQ-ex，入库速度非常快，北京时间，情人节入库，只是不巧碰上了国航一班飞机取消，原本 16 号上飞机的，结果到了 18 号才上飞机，飞到国内后，原本 23 号清关的，结果碰上上海海关整顿导致的天津海关爆仓，于是 24 日才清关。</p>
+<p>然后转入 EMS 后，大家都懂的。 EMS = Even Much Slower。于是一直到今天才收到，所以所有路程为：</p>
+<p>西弗吉尼亚州，Martinsburg =》特拉华州，Newark =》芝加哥机场 ORD =》纽约机场 JFK =》北京机场 PEK =》天津海关 TSN =》天津 EMS=》北京 EMS 中转 =》南京 EMS 中转 =》杭州 EMS 处理中心 =》学校收发大厅。</p>
+<p>总共耗时：Amazon 配送 7 天 + 转运至清关 10 天 +EMS 4 天 = 21 天。</p>
+<p>下面是开箱图：</p>
+<p><img src="http://pic.yupoo.com/lisposter/BMiRj3kV/PmmvS.jpg" alt=""></p>
+<p>拿到的 EMS 包裹，真是意外啊，这么慢的居然还是 EMS，不是 E 邮宝，一摸包裹，是 Kindle 的包装盒，加了个泡泡纸，据说这玩意在米国很贵。</p>
+<p><img src="http://pic.yupoo.com/lisposter/BMiRlP15/mmeb2.jpg" alt=""></p>
+<p>传说中的泡泡纸。</p>
+<p><img src="http://pic.yupoo.com/lisposter/BMiRm5LR/bxUXL.jpg" alt=""></p>
+<p>Kindle 的一次性封条，有些同学的被海关拆了，我幸免了。</p>
+<p><img src="http://pic.yupoo.com/lisposter/BMiRmSxG/inqqV.jpg" alt=""></p>
+<p>里面东西是极度的少，一张小纸片，一个 Kindle Touch ，一根超长 USB 数据线，就没了。</p>
+<p><img src="http://pic.yupoo.com/lisposter/BMiRo3rx/rWhsd.jpg" alt=""></p>
+<p>这字就是所谓电子墨水了，对的，它就是以这个画面过来的，而不是外面贴了一张哦～</p>
+<p><img src="http://pic.yupoo.com/lisposter/BMiRoTsy/jvceG.jpg" alt=""></p>
+<p>和老 Y 拍一张。</p>
+<p><img src="http://pic.yupoo.com/lisposter/BMiRpYtp/tr7mm.jpg" alt=""></p>
+<p>证明这是我的 =。=</p>
+<p><img src="http://pic.yupoo.com/lisposter/BMiRq8GA/KPh0j.jpg" alt=""></p>
+<p>Kindle Touch 的屁股，看上去磨砂的背面，实际有一层很神奇的物质，不会滑。</p>
+<p><img src="http://pic.yupoo.com/lisposter/BMiRqJWr/Kv7mv.jpg" alt=""></p>
+<p>连上了 WiFi ，自动显示了注册名字。同步的内容也下来了，左上角特写～</p>
+<p><img src="http://pic.yupoo.com/lisposter/BMiRrhfZ/QdQTW.jpg" alt=""></p>
+<p>等了半个月的套子终于和 Kindle Touch 合体 。。XD。</p>
+<p>至此，第一次海淘顺利完成，其实这时间还是能接受的～～</p>
+<p>接下来就是各种折腾了，到时候再发上来～</p>
+
+			
+		</div>
+		<footer>
+			
+				
+					<div class="alignleft">
+						<a href="/2012/02/28/kindle-touch-unboxing/#more" class="more-link">Read More</a>
+					</div>
+				
+				
+
+			
+		</footer>
+	</div>
+</article>
+
+
+  
+    <article class="post">
+	
+	<div class="post-content">
+		<header>
+			
+  
+    <h1 class="title"><a href="/2012/02/06/lantern-festival-2012/">元宵之际，漫漫长夜</a></h1>
+  
+
+			
+				<time datetime="2012-02-06T15:00:32.000Z">2012 Feb 6</time>
+			
+		</header>
+		<div class="entry">
+			
+				<p>无奈发觉自己愈发多愁善感，一部电视剧就能催成泪涌，一本书可以思虑很久，虽不似第一次，早在前些时候，可能是大一，就发现，自己看着憨豆，居然笑不出来，越看却觉得苦涩，这不是说我觉得 Rowan Atkinson 演技差，反而是他演技太好了，演得那么淋漓尽致，细腻真切，小丑般的生活，让人觉得他很傻，然后很乐，其实我们，只是另一般小丑生活。</p>
+<p>很想经常写些文字，却发现打开博客，再没当年那种激情，并不是我厌倦了博客，急切想写，却，涌现笔头的，总是戛然而止后消失无踪，再无显现。</p>
+<p>人的压力的大了，想得事情多了，考虑的情况多了，着手忙的事太麻烦了。。。可悲的是，还有着伟大的梦想和目标在，为什么是可悲呢，因为我太渺小了，却急切想要实现，一路摸索，跌打损伤，却无人问津，逐渐演变了性格。</p>
+<p>最讨厌的事，莫过于，分明自己不愿看到的，却总是会发生，眼看它要发生了，却也只好眼睁睁而不能作为。</p>
+<p>曾经寄情于音乐，一听便是一整天，连睡觉，也是伴着音律，这真是种美妙绝伦的东西，活跃了我多少青春。</p>
+<p>过去一年，却没怎么听了。</p>
+<p>以前，钟爱电影，一个暑假，看他几十部小菜一碟，哪怕是作业繁重的国庆七天乐，也上午一部，下午一部，晚上一部。</p>
+<p>过去一年，却没怎么看了。</p>
+<p>少年时，很爱看书，那时没有现在的网络小说，连网络也不发达，于是看些科幻小说，百科全书，各种科普类，以及爸推荐的文学书，还有少许几部妈妈背着我爸给我买的青春泡菜小说。</p>
+<p>过去一年，却没怎么读了。</p>
+<p>暗暗问自己，为什么呢？</p>
+<p>总是给自己一个草草的没时间而带过，是啊，没时间，是因为什么呢？学业？不是。没做好时间规划？大概也不是吧。</p>
+<p>因为总是沉浸在生活中，生活那么多姿多彩，即便是苦，也耐人寻味。</p>
+<p>后来，迎来了爱情。</p>
+<p>不知为何，变得不再那么坚韧了，喜怒哀乐因人而变，心情时好时坏，这并不是谁的错，只是少年的梦想般生活已经不再。</p>
+<p>无论将自己的童心如何保护，终究还有现实的残酷压力，残酷事实，揪心情节，困扰着，压抑着。</p>
+<p>说不出的苦衷，总想有个人倾听，后来，有人愿意听了，凑到她耳朵，话却变味了。</p>
+<p>也许，只有自己才会明白自己的苦恼吧，可惜了人，不会接受自己的安慰。</p>
+<p>去年元宵，拉着父母跑上屋顶，放着孔明灯，虽然失败了一个，却也乐此不疲，成为这一生中，重要的记忆之一。</p>
+<p>今年元宵，看着爸爸煮汤圆，妈妈却因肠胃不适，说只吃两个。窗外狂风大作，天气反常，远不及去年晴空万里。</p>
+<p>下了一天雨，那种雨声，是我期待的雨声，不急不缓，不轻不重，如心灵按摩般敲打窗轩，若不计天气寒冷，则是个舒服的日子。</p>
+<p>原来只是自己不愿去耐心而已，我不太清楚 Zoe 那天说的不喜欢的那种生活是平静还是平淡。我也不知道自己是不是属于那种“喜欢平静”的人，还是喜欢闹腾的人，也许恋爱期间，本该就是放下一切，守候着，奈何自己还太弱小，又想尽快完成目标，而人的时间只有一分，也许对方只是几句思念寒暄，便需放弃一个不能间断的事情，或者不作，或者娱乐，依次守候。这本该是个矛盾，也是个无解的题，我也但愿永远无解，否则生活真是太平淡，味同嚼蜡般了。</p>
+<p>后来，我寄情于前端，寄情于代码编写中，那种富有韵律美，让人爱不释手的东西，寄情于 Kindle， 而且一寄寄了一个月，因为有个憧憬，才会想日子的过去，才愿意接受这本来似飞般快速流失的时间，让自己觉得是快乐的，就算时间在飞逝，至少我还能等到一个东西。</p>
+<p>我急切地想下个学期的到来，也就是学生生涯最后一个需要上课的学期，因为可以见到 Zoe ，可以收到我的 Kindle ，可以更近梦想一步；可我，也每天厌恶着它的到来，厌恶的程度，就如去年的现在憧憬大二的第二个学期那样。因为这是学生生涯最后一个的，我不知道该是如何去面对，我不愿一如既往，我不喜欢一成不变，一样的逃课，期末着急，我希望是个不一样的大学的一学期，也许是认真听讲，努力学好吧，完美的结束，总是让人回忆的时候，倍增温暖。但是，我知道，下学期，必将有段时间，是巨大的考验，很是煎熬。</p>
+<p>在就业之前，没有更多时间让我浪费了，本科学业，以及前端业，两种不同专业，将在这一学期中学到可以上岗的水平。</p>
+<p>其实压力是巨大的，巧言轻松，不过是他人不知罢了。自己无法安慰，只好寄情他物，不去多想。</p>
+<p>世间万物万事，大概都有正反两面，也都用着等价交换的原则，享受着，却也被牵绊着。</p>
+<p>元宵之际，不敢求风调雨顺，但求安稳度过，谁不愿安稳呢。</p>
+<p>&nbsp;</p>
+
+			
+		</div>
+		<footer>
+			
+				
+					<div class="alignleft">
+						<a href="/2012/02/06/lantern-festival-2012/#more" class="more-link">Read More</a>
+					</div>
+				
+				
+
+			
+		</footer>
+	</div>
+</article>
+
+
+  
+
+  <nav id="pagination" class="clearfix">
+  
+    <a href="/archives/2012/page/5/" class="alignleft prev">上一页</a>
+  
+  
+    <a href="/archives/2012/page/7/" class="alignright next">下一页</a>
+  
+</nav>
+</div>
+		<aside id="widget" class="clearfix">		
+			
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Blog-fix/">Blog-fix</a><small>11</small></li>
+  
+    <li><a href="/categories/Codex/">Codex</a><small>8</small></li>
+  
+    <li><a href="/categories/Blog-fix/Codex/">Codex</a><small>1</small></li>
+  
+    <li><a href="/categories/Life/">Life</a><small>78</small></li>
+  
+    <li><a href="/categories/Tutor/">Tutor</a><small>18</small></li>
+  
+    <li><a href="/categories/Codex/Tutor/">Tutor</a><small>1</small></li>
+  
+    <li><a href="/categories/Life/Uncategorized/">Uncategorized</a><small>4</small></li>
+  
+    <li><a href="/categories/Uncategorized/">Uncategorized</a><small>15</small></li>
+  
+    <li><a href="/categories/Vision/">Vision</a><small>40</small></li>
+  
+  </ul>
+</div>
+
+		
+			
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/GTD/" style="font-size: 16.25px;">GTD</a><a href="/tags/PKM/" style="font-size: 15.50px;">PKM</a><a href="/tags/QQ/" style="font-size: 15.25px;">QQ</a><a href="/tags/cctv/" style="font-size: 15.00px;">cctv</a><a href="/tags/javascript/" style="font-size: 16.00px;">javascript</a><a href="/tags/meme/" style="font-size: 14.75px;">meme</a><a href="/tags/twitter/" style="font-size: 17.50px;">twitter</a><a href="/tags/世博/" style="font-size: 11.50px;">世博</a><a href="/tags/分享/" style="font-size: 13.00px;">分享</a><a href="/tags/前端/" style="font-size: 11.25px;">前端</a><a href="/tags/博客维护/" style="font-size: 19.00px;">博客维护</a><a href="/tags/参观/" style="font-size: 11.75px;">参观</a><a href="/tags/团队/" style="font-size: 12.50px;">团队</a><a href="/tags/图书/" style="font-size: 13.75px;">图书</a><a href="/tags/备份/" style="font-size: 13.50px;">备份</a><a href="/tags/学习/" style="font-size: 17.75px;">学习</a><a href="/tags/思路/" style="font-size: 14.00px;">思路</a><a href="/tags/总结/" style="font-size: 16.50px;">总结</a><a href="/tags/感想/" style="font-size: 19.50px;">感想</a><a href="/tags/手机/" style="font-size: 15.75px;">手机</a><a href="/tags/斯路/" style="font-size: 12.25px;">斯路</a><a href="/tags/旅游/" style="font-size: 12.00px;">旅游</a><a href="/tags/旅途/" style="font-size: 13.25px;">旅途</a><a href="/tags/日记/" style="font-size: 19.75px;">日记</a><a href="/tags/日食/" style="font-size: 10.50px;">日食</a><a href="/tags/春节/" style="font-size: 18.25px;">春节</a><a href="/tags/格莱美/" style="font-size: 10.00px;">格莱美</a><a href="/tags/榜单/" style="font-size: 10.25px;">榜单</a><a href="/tags/气场/" style="font-size: 12.75px;">气场</a><a href="/tags/网络/" style="font-size: 14.50px;">网络</a><a href="/tags/聚会/" style="font-size: 11.00px;">聚会</a><a href="/tags/节日/" style="font-size: 18.75px;">节日</a><a href="/tags/观测/" style="font-size: 10.75px;">观测</a><a href="/tags/视频/" style="font-size: 18.00px;">视频</a><a href="/tags/计划/" style="font-size: 17.25px;">计划</a><a href="/tags/译文/" style="font-size: 17.00px;">译文</a><a href="/tags/读后感/" style="font-size: 14.25px;">读后感</a><a href="/tags/资源/" style="font-size: 16.75px;">资源</a><a href="/tags/软件/" style="font-size: 18.50px;">软件</a><a href="/tags/音乐/" style="font-size: 19.25px;">音乐</a>
+  </div>
+</div>
+
+		
+			<div class="widget blogroll">
+  <h3 class="title">友情链接</h3>	
+	<ul>
+		
+			<li><a href="http://zhuli.me">Leigh</a></li>
+		
+			<li><a href="http://zoechan.me">Zoe</a></li>
+		
+			<li><a href="http://test">Test</a></li>
+		
+	</ul>
+</div>
+		
+</aside>
+	</div>
+	<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"zhulime"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

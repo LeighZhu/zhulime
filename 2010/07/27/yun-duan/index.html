@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>“云端”那点事 | Leigh:// 斯路</title>
+  <meta name="author" content="Leigh Zhu">
+  
+  <meta name="description" content="Personal Blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="“云端”那点事"/>
+  <meta property="og:site_name" content="Leigh:// 斯路"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Leigh:// 斯路" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+</head>
+
+
+<body>
+	<div id="stick">
+		<header id="header"><hgroup>
+	<h1><a href="/">Leigh:// 斯路</a></h1>
+	<h2>行于斯路…</h2>
+</hgroup>
+<nav id="header-nav" class="clearfix">
+	<ul>
+		
+			<li><a href="/">Home</a></li>
+		
+			<li><a href="/archives">Archives</a></li>
+		
+	</ul>
+</nav>
+<nav id="ext-nav" class="clearfix">
+	<ul>
+		
+	</ul>
+</nav></header>
+		<footer id="footer"><p class="copy">
+	
+	&copy; 2013 Leigh Zhu
+	
+</p></footer>
+	</div>
+	<div id="wrapper" class="clearfix">
+		<div id="content"><article class="post">
+	
+	<div class="post-content">
+		<header>
+			
+  
+    <h1 class="title">“云端”那点事</h1>
+  
+
+			
+				<time datetime="2010-07-27T01:47:34.000Z">2010 Jul 27</time>
+			
+		</header>
+		<div class="entry">
+			
+				<p><img src="http://pic.yupoo.com/lisposter/724159b1abb7/7yrwefj8.jpg" alt=""></p>
+<p>这两天，遇到了几件比较郁闷的事，其中“云端”惹的祸，算是解决了。</p>
+<p>其实“<a href="http://yunduan.cn/">云端</a>”这个软件挺不错的，自从他前年获得“中国优秀软件创新大赛金奖后”我就开始用上了。</p>
+<p>简单的介绍，“云端”提供一种新式软件安装方式，你不需要去软件的官网下载，而是可以直接在云端平台搜索，下载，安装，所有软件都可以轻松的在两步内安装完毕，这到有点像 Linux 平台的部分软件平台。</p>
+<a name="more"></a>
+
+<p>此外，云端的软件安装方式，是通过虚拟映射一个目录来达成安装，实际软件所有文件，处在一个用户设置的缓存文件夹，这样的好处自然有很多：</p>
+<p><strong>1、</strong>不会对系统造成任何影响，因为软件所有产生的文件，都只保存在缓存文件夹，其中甚至包括注册表信息。</p>
+<p><strong>2、</strong>系统重装后，可以瞬间恢复，（保留缓存文件夹），原理同上了，除此之外，云端本身也是绿色软件，所以在重装之前做好简单的拷贝备份即可。</p>
+<p><strong>3、</strong>满足软件试用狂，在你想试用一款新软件，又怕它对系统造成不良影响的时候，可以把它安装到云端，原理也同上了。</p>
+<p>其他众多功能以及介绍，还是看官方的 <a href="http://yunduan.cn/index.php?option=com_swbox&amp;task=infomation&amp;inftype=function">说明书</a>。</p>
+<p>那么，云端在这几天给我惹的祸是……</p>
+<p>云端自从 beta 到了 1.0 之后，有了一个可选的服务项，启动该服务后，可以做到不启动云端软件平台时使用安装在云端里面的软件，但是，不幸的是，这个强大的功能目前还非常不稳定，至少在我的 Windows 7 环境下，一直在闹腾。</p>
+<p><strong>1、</strong>右键新建菜单变空，这个问题好多网友也遇到了，传统的方法是进一次“安全模式”，不过这治标不治本了。</p>
+<p><strong>2、</strong>影响 Chrome 的 Switchy！ 扩展正常工作，这个应该是云端的服务影响了 IE 的代理设置，而 Chrome 目前是调用 IE 的代理设置。这个问题困扰了我很久，在我查证右键新建菜单问题后，以及反复思考，问题第一次出现是在我打开云端的服务之后，我手动关掉了服务，测试了下，确实 Switchy！ 可以工作了。</p>
+<p>其他的问题暂时没有发现，我也已经关掉了服务，国内软件界难得有这么优秀的软件，作为资格绝对老的用户，我整理了下上述发现的 Bug ，已经提交给官方。</p>
+<p>应该在下一版本可以得到解决了。</p>
+<p><strong>//update 18：00：已经收到开发者的回复邮件了：</strong></p>
+<p><span style="font-family: 微软雅黑 ; color: #000000; font-size: x-small;"><strong>“</strong><span style="font-family: 微软雅黑 ; color: #000000; font-size: x-small;"><strong>右键菜单的问题  一般是软件造成的  隐藏你激活的软件就没问题了  找出导致问题的软件 修复一下即可解决，代理的问题已经在更改中。</strong></span><strong>”</strong></span></p>
+<p><span style="font-family: 微软雅黑 ; color: #000000; font-size: x-small;"><strong>期待新版本的到来吧</strong></span></p>
+
+			
+		</div>
+		<footer>
+			
+				
+  
+  <div class="categories">
+    <a href="/categories/Tutor/">Tutor</a>
+  </div>
+
+				
+  
+  <div class="tags">
+    <a href="/tags/软件/">软件</a>
+  </div>
+
+				
+			
+		</footer>
+	</div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+  <div class="ds-thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div>
+		<aside id="widget" class="clearfix">		
+			
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Blog-fix/">Blog-fix</a><small>11</small></li>
+  
+    <li><a href="/categories/Codex/">Codex</a><small>8</small></li>
+  
+    <li><a href="/categories/Blog-fix/Codex/">Codex</a><small>1</small></li>
+  
+    <li><a href="/categories/Life/">Life</a><small>78</small></li>
+  
+    <li><a href="/categories/Tutor/">Tutor</a><small>18</small></li>
+  
+    <li><a href="/categories/Codex/Tutor/">Tutor</a><small>1</small></li>
+  
+    <li><a href="/categories/Life/Uncategorized/">Uncategorized</a><small>4</small></li>
+  
+    <li><a href="/categories/Uncategorized/">Uncategorized</a><small>15</small></li>
+  
+    <li><a href="/categories/Vision/">Vision</a><small>40</small></li>
+  
+  </ul>
+</div>
+
+		
+			
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/GTD/" style="font-size: 16.25px;">GTD</a><a href="/tags/PKM/" style="font-size: 15.50px;">PKM</a><a href="/tags/QQ/" style="font-size: 15.25px;">QQ</a><a href="/tags/cctv/" style="font-size: 15.00px;">cctv</a><a href="/tags/javascript/" style="font-size: 16.00px;">javascript</a><a href="/tags/meme/" style="font-size: 14.75px;">meme</a><a href="/tags/twitter/" style="font-size: 17.50px;">twitter</a><a href="/tags/世博/" style="font-size: 11.50px;">世博</a><a href="/tags/分享/" style="font-size: 13.00px;">分享</a><a href="/tags/前端/" style="font-size: 11.25px;">前端</a><a href="/tags/博客维护/" style="font-size: 19.00px;">博客维护</a><a href="/tags/参观/" style="font-size: 11.75px;">参观</a><a href="/tags/团队/" style="font-size: 12.50px;">团队</a><a href="/tags/图书/" style="font-size: 13.75px;">图书</a><a href="/tags/备份/" style="font-size: 13.50px;">备份</a><a href="/tags/学习/" style="font-size: 17.75px;">学习</a><a href="/tags/思路/" style="font-size: 14.00px;">思路</a><a href="/tags/总结/" style="font-size: 16.50px;">总结</a><a href="/tags/感想/" style="font-size: 19.50px;">感想</a><a href="/tags/手机/" style="font-size: 15.75px;">手机</a><a href="/tags/斯路/" style="font-size: 12.25px;">斯路</a><a href="/tags/旅游/" style="font-size: 12.00px;">旅游</a><a href="/tags/旅途/" style="font-size: 13.25px;">旅途</a><a href="/tags/日记/" style="font-size: 19.75px;">日记</a><a href="/tags/日食/" style="font-size: 10.50px;">日食</a><a href="/tags/春节/" style="font-size: 18.25px;">春节</a><a href="/tags/格莱美/" style="font-size: 10.00px;">格莱美</a><a href="/tags/榜单/" style="font-size: 10.25px;">榜单</a><a href="/tags/气场/" style="font-size: 12.75px;">气场</a><a href="/tags/网络/" style="font-size: 14.50px;">网络</a><a href="/tags/聚会/" style="font-size: 11.00px;">聚会</a><a href="/tags/节日/" style="font-size: 18.75px;">节日</a><a href="/tags/观测/" style="font-size: 10.75px;">观测</a><a href="/tags/视频/" style="font-size: 18.00px;">视频</a><a href="/tags/计划/" style="font-size: 17.25px;">计划</a><a href="/tags/译文/" style="font-size: 17.00px;">译文</a><a href="/tags/读后感/" style="font-size: 14.25px;">读后感</a><a href="/tags/资源/" style="font-size: 16.75px;">资源</a><a href="/tags/软件/" style="font-size: 18.50px;">软件</a><a href="/tags/音乐/" style="font-size: 19.25px;">音乐</a>
+  </div>
+</div>
+
+		
+			<div class="widget blogroll">
+  <h3 class="title">友情链接</h3>	
+	<ul>
+		
+			<li><a href="http://zhuli.me">Leigh</a></li>
+		
+			<li><a href="http://zoechan.me">Zoe</a></li>
+		
+			<li><a href="http://test">Test</a></li>
+		
+	</ul>
+</div>
+		
+</aside>
+	</div>
+	<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"zhulime"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

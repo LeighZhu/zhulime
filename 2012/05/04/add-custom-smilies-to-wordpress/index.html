@@ -1,0 +1,339 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>自定义/增加 WordPress 表情 | Leigh:// 斯路</title>
+  <meta name="author" content="Leigh Zhu">
+  
+  <meta name="description" content="Personal Blog">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="自定义/增加 WordPress 表情"/>
+  <meta property="og:site_name" content="Leigh:// 斯路"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Leigh:// 斯路" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+  
+</head>
+
+
+<body>
+	<div id="stick">
+		<header id="header"><hgroup>
+	<h1><a href="/">Leigh:// 斯路</a></h1>
+	<h2>行于斯路…</h2>
+</hgroup>
+<nav id="header-nav" class="clearfix">
+	<ul>
+		
+			<li><a href="/">Home</a></li>
+		
+			<li><a href="/archives">Archives</a></li>
+		
+	</ul>
+</nav>
+<nav id="ext-nav" class="clearfix">
+	<ul>
+		
+	</ul>
+</nav></header>
+		<footer id="footer"><p class="copy">
+	
+	&copy; 2013 Leigh Zhu
+	
+</p></footer>
+	</div>
+	<div id="wrapper" class="clearfix">
+		<div id="content"><article class="post">
+	
+	<div class="post-content">
+		<header>
+			
+  
+    <h1 class="title">自定义/增加 WordPress 表情</h1>
+  
+
+			
+				<time datetime="2012-05-04T10:11:06.000Z">2012 May 4</time>
+			
+		</header>
+		<div class="entry">
+			
+				<p>WordPress 自身自带了 22 个 表情图标。</p>
+<p>如果你开启了“表情转换”功能的话， 就会将一些表情字符转换为相应的表情图片 比如 “：）” ，该功能开启方法如下：</p>
+<p><em>注：[本文为了示例，将相应冒号专转换为中文冒号]</em></p>
+<ol>
+<li>前往站点后台</li>
+<li>选择<em>设置 -&gt; 撰写</em></li>
+<li>在<em>格式</em>区域，<strong>取消选择</strong>&quot;<em>转换如 :-)、:-P 等文字表情符号为图像</em>&quot; 的选项
+然后今天，Zoe 说她想要新浪微博上一系列墩墩的表情（彼尔德），于是着手准备替换默认表情，然后就发现了很严重的问题，发现 WordPress 默认的表情库相当不理想，比如“开心”的表情，它有 “：smile：”， “：grin：”， “：lol：”，“：mrgreen：” ，再看围脖上的那套，哪来那么多开心的表情啊。另外， WordPress 还有诸如 “：arrow：” 这种。。。。。情何以堪。</li>
+</ol>
+<p>虽然表情数量刚好一样是 22 个，但是，如果只是简单的替换 WordPress 中相应的 “icon_*.gif” 的话，以前文章以及评论中写过的表情就乱套了，比如曾经你发了个微笑，现在的图片确实生气。。。。</p>
+<p>能不能另外自定义这些表情符号以及他们对应的图片呢？显然是可以的，于是就产生了这篇文章。</p>
+<p>原理，查看了 wp 官方的 <a href="http://codex.wordpress.org/Using_Smilies" title="Using Smilies">Codex - Using Smilies </a>，</p>
+<blockquote>
+<p>If you really must change the file names of the images, edit the file that refers to these images, &#39;<strong>vars.php&#39;</strong> (in WordPress 2.2, they&#39;re located in &#39;<strong>functions.php&#39;</strong>), situated in the <tt>/wp-includes/</tt> directory.
+然后，就找到了那个文件，查找 “smilies”，就可以发现这个函数：</p>
+</blockquote>
+<pre><code><span class="xml">function smilies_init() {
+    ......
+}`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
+好的，既然找到根源了，我们就可以动手了。
+
+下面是修改方法：
+
+</span><span class="comment"># 1. 搜集你需要的表情。</span><span class="xml">
+
+将他们们命名，并想好他们的相应的表情符号（关键字）
+
+比如： ：<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #</span><span class="number">993300</span><span class="xml">;"&gt;：bed 拍脸：<span class="tag">&lt;/<span class="title">span</span>&gt;</span> =》<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #</span><span class="number">339966</span><span class="xml">;"&gt; bed_pailian.gif<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+
+我把他们都保存在了我的主题目录下的 _ images/smilies_ 文件夹下，这样，WP 升级后不会将其覆盖掉（还原掉，你不想的）
+
+</span><span class="comment"># 2\. 改造主题的 function.php</span><span class="xml">
+
+打开你的 _function.php _ 它一般位于：_$ 站点目录 /wp-content/themes/ 主题目录 / _ 下面，或者你也可以在 WP 后台 “Appearance” =》 “Editor” ，然后找到 _ function.php _。（注意：我建议不要直接在后台改造你的主题，因为如果出错，你的博客就下线了 :bed 蹬腿: ）
+
+在空白位置，一般你可以选在该文件的最后面，另起一行，然后输入下面代码：
+<span class="tag">&lt;<span class="title">pre</span>&gt;</span>`/**
+ * Plugin Name: Add Custom Smilies
+ * Plugin URI: http://zhuli.me/</span><span class="number">2012</span><span class="xml">/</span><span class="number">05</span><span class="xml">/</span><span class="number">04</span><span class="xml">/add-custom-smilies-to-wordpress.html
+ * Description: Add More Smilies to your WP.
+ * Version: </span><span class="number">0.0</span><span class="xml"></span><span class="number">.1</span><span class="xml">
+ * Author: Leigh
+ * Author URI: http://zhuli.me/
+ */
+function evolz_smilies_init() {
+    global </span><span class="variable">$wpsmiliestrans</span><span class="xml">, </span><span class="variable">$wp_smiliessearch</span><span class="xml">, </span><span class="variable">$wp_smiliesreplace</span><span class="xml">;
+
+    // don't bother setting up smilies if they are disabled
+    if ( !get_option( 'use_smilies' ) )
+        return;
+
+    if ( !isset( </span><span class="variable">$wpsmiliestrans</span><span class="xml"> ) ) {
+        </span><span class="variable">$wpsmiliestrans</span><span class="xml"> = array(
+                ':bed 奔跑:' =&amp;gt; 'bed_benpao.gif',
+                ':bed 蹬腿:' =&amp;gt; 'bed_dengtui.gif',
+                ':bed 飞吻:' =&amp;gt; 'bed_feiwen.gif',
+                ':bed 好饱:' =&amp;gt; 'bed_haobao.gif',
+                ':bed 嘿哈:' =&amp;gt; 'bed_heiha.gif',
+              ':bed 举哑铃:' =&amp;gt; 'bed_juyaling.gif',
+              ':bed 啦啦啦:' =&amp;gt; 'bed_lalala.gif',
+                ':bed 练腰:' =&amp;gt; 'bed_lianyao.gif',
+                ':bed 凌乱:' =&amp;gt; 'bed_lingluan.gif',
+                ':bed 拍脸:' =&amp;gt; 'bed_pailian.gif',
+                ':bed 拍手:' =&amp;gt; 'bed_paishou.gif',
+                  ':bed 跑:' =&amp;gt; 'bed_pao.gif',
+                  ':bed 皮:' =&amp;gt; 'bed_pi.gif',
+                ':bed 飘忽:' =&amp;gt; 'bed_piaohu.gif',
+                ':bed 揉眼:' =&amp;gt; 'bed_rouyan.gif',
+                ':bed 撒娇:' =&amp;gt; 'bed_sajiao.gif',
+                ':bed 踏步:' =&amp;gt; 'bed_tabu.gif',
+                ':bed 弹跳:' =&amp;gt; 'bed_tantiao.gif',
+                  ':bed 跳:' =&amp;gt; 'bed_tiao.gif',
+                   ':bed 兴奋:' =&amp;gt; 'bed_xingfen.gif',
+            ':bed 仰卧起坐:' =&amp;gt; 'bed_yangwoqizuo.gif',
+                ':bed 转圈:' =&amp;gt; 'bed_zhuanquan.gif',
+                ':mrgreen:' =&amp;gt; 'icon_mrgreen.gif',
+                ':neutral:' =&amp;gt; 'icon_neutral.gif',
+                ':twisted:' =&amp;gt; 'icon_twisted.gif',
+                  ':arrow:' =&amp;gt; 'icon_arrow.gif',
+                  ':shock:' =&amp;gt; 'icon_eek.gif',
+                  ':smile:' =&amp;gt; 'icon_smile.gif',
+                    ':???:' =&amp;gt; 'icon_confused.gif',
+                   ':cool:' =&amp;gt; 'icon_cool.gif',
+                   ':evil:' =&amp;gt; 'icon_evil.gif',
+                   ':grin:' =&amp;gt; 'icon_biggrin.gif',
+                   ':idea:' =&amp;gt; 'icon_idea.gif',
+                   ':oops:' =&amp;gt; 'icon_redface.gif',
+                   ':razz:' =&amp;gt; 'icon_razz.gif',
+                   ':roll:' =&amp;gt; 'icon_rolleyes.gif',
+                   ':wink:' =&amp;gt; 'icon_wink.gif',
+                    ':cry:' =&amp;gt; 'icon_cry.gif',
+                    ':eek:' =&amp;gt; 'icon_surprised.gif',
+                    ':lol:' =&amp;gt; 'icon_lol.gif',
+                    ':mad:' =&amp;gt; 'icon_mad.gif',
+                    ':sad:' =&amp;gt; 'icon_sad.gif',
+                      '</span><span class="number">8</span><span class="xml">-)' =&amp;gt; 'icon_cool.gif',
+                      '</span><span class="number">8</span><span class="xml">-O' =&amp;gt; 'icon_eek.gif',
+                      ':-(' =&amp;gt; 'icon_sad.gif',
+                      ':-)' =&amp;gt; 'icon_smile.gif',
+                      ':-?' =&amp;gt; 'icon_confused.gif',
+                      ':-D' =&amp;gt; 'icon_biggrin.gif',
+                      ':-P' =&amp;gt; 'icon_razz.gif',
+                      ':-o' =&amp;gt; 'icon_surprised.gif',
+                      ':-x' =&amp;gt; 'icon_mad.gif',
+                      ':-|' =&amp;gt; 'icon_neutral.gif',
+                      ';-)' =&amp;gt; 'icon_wink.gif',
+                       '</span><span class="number">8</span><span class="xml">)' =&amp;gt; 'icon_cool.gif',
+                       '</span><span class="number">8</span><span class="xml">O' =&amp;gt; 'icon_eek.gif',
+                       ':(' =&amp;gt; 'icon_sad.gif',
+                       ':)' =&amp;gt; 'icon_smile.gif',
+                       ':?' =&amp;gt; 'icon_confused.gif',
+                       ':D' =&amp;gt; 'icon_biggrin.gif',
+                       ':P' =&amp;gt; 'icon_razz.gif',
+                       ':o' =&amp;gt; 'icon_surprised.gif',
+                       ':x' =&amp;gt; 'icon_mad.gif',
+                       ':|' =&amp;gt; 'icon_neutral.gif',
+                       ';)' =&amp;gt; 'icon_wink.gif',
+                      ':!:' =&amp;gt; 'icon_exclaim.gif',
+                      ':?:' =&amp;gt; 'icon_question.gif',
+        );
+    }
+    </span><span class="variable">$siteurl</span><span class="xml"> = get_option( 'siteurl' );
+    foreach ( (array) </span><span class="variable">$wpsmiliestrans</span><span class="xml"> as </span><span class="variable">$smiley</span><span class="xml"> =&amp;gt; </span><span class="variable">$img</span><span class="xml"> ) {
+    </span><span class="variable">$wp_smiliessearch</span><span class="xml">[] = '/(\s|^)' . preg_quote( </span><span class="variable">$smiley</span><span class="xml">, '/' ) . '(\s|$)/';
+    </span><span class="variable">$smiley_masked</span><span class="xml"> = attribute_escape( trim( </span><span class="variable">$smiley</span><span class="xml"> ) );
+    </span><span class="variable">$wp_smiliesreplace</span><span class="xml">[] = " &amp;lt;img src='</span><span class="variable">$siteurl</span><span class="xml">/wp-includes/images/smilies/</span><span class="variable">$img</span><span class="xml">' alt='</span><span class="variable">$smiley_masked</span><span class="xml">' class='wp-smiley' /&amp;gt; ";
+    }
+}
+
+remove_action('init', 'smilies_init', </span><span class="number">5</span><span class="xml">);
+add_action('init', 'evolz_smilies_init', </span><span class="number">5</span><span class="xml">);`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
+我们可以看到上面代码最后的两条语句，倒数第二条移除了 WP 自带的 _smiles_init_ 函数，最后一条启用了我们自定义的  _ evolz_smilies_init  _ 函数。
+
+这样，WP 在解析文章数据时候，便会便会在我们自定义的表情数组中查抄我们的表情了。
+
+接下来，你要做的事情就是，定义你的表情列表，如上面代码中所示。
+_ '：bed 奔跑：' =&amp;gt; 'bed_benpao.gif', _ 前面引号中的事表情符号（注意我这里为了演示用了中文冒号，你在定义的时候需要注意！），也就是你在写文章或评论时候输入的文字，后面引号中的就是相应的文件名了。
+
+现在，我的表情和 新浪微博 的表情关键字是一样的了， 只是围脖用 [] 包含，而我用 :: 包含，这样做是因为，如上代码，我在自定义的表情后面仍然加上了 WP 默认的关键字和文件名列表，这样，你之前文章和评论中所引用的表情仍然可以保持不变，等于是在原来基础上多了一套表情了  :bed 啦啦啦:
+
+</span><span class="comment"># 3. 将表情目录映射到我们自己的主题目录下的 _images/smilies_</span><span class="xml">
+
+使用 我爱水煮鱼 的代码：
+<span class="tag">&lt;<span class="title">pre</span>&gt;</span>`/**
+ * Plugin Name: Custom Smilies Src
+ * Plugin URI: http://fairyfish.net/m/custom_smilies_src/
+ * Description: Custome Smiles Src
+ * Version: </span><span class="number">0.1</span><span class="xml">
+ * Author: Denis
+ * Author URI: http://fairyfish.net/
+ */
+add_filter('smilies_src','custom_smilies_src',</span><span class="number">1</span><span class="xml">,</span><span class="number">10</span><span class="xml">);
+function custom_smilies_src (</span><span class="variable">$img_src</span><span class="xml">, </span><span class="variable">$img</span><span class="xml">, </span><span class="variable">$siteurl</span><span class="xml">){
+    return </span><span class="variable">$siteurl.</span><span class="xml">'/wp-content/themes/evolz/images/smilies/'.</span><span class="variable">$img</span><span class="xml">;
+}</span>
+</code></pre>
+<p>这段代码的用途就是将 WP 的默认表情路径 <em>$siteurl/wp-includes/images/smilies/ </em> 映射到  $siteurl/wp-content/themes/ 你的主题目录 /images/smilies/</p>
+<h1>4. Enjoy it.</h1>
+<p>好的，没有第四步了，现在你可以在文章和评论中插入诸如  “ <em>：表情符号（关键字）：</em>” （不包括引号，另外再注：我是为了演示而使用了中文冒号）来使用这些表情啦 :bed 跳:</p>
+<h1>5. 等等，还有一件事</h1>
+<p>我们知道，WP 默认编辑器会莫名其妙删除一些空格，所以，如果是在 Visual 模式下写文章的的话，可能就会悲剧了，哎，这算个 bug 吧，改天看看能不能解决掉。</p>
+
+			
+		</div>
+		<footer>
+			
+				
+  
+  <div class="categories">
+    <a href="/categories/Codex/">Codex</a>
+  </div>
+
+				
+				
+			
+		</footer>
+	</div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+  <div class="ds-thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div>
+		<aside id="widget" class="clearfix">		
+			
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Blog-fix/">Blog-fix</a><small>11</small></li>
+  
+    <li><a href="/categories/Codex/">Codex</a><small>8</small></li>
+  
+    <li><a href="/categories/Blog-fix/Codex/">Codex</a><small>1</small></li>
+  
+    <li><a href="/categories/Life/">Life</a><small>78</small></li>
+  
+    <li><a href="/categories/Tutor/">Tutor</a><small>18</small></li>
+  
+    <li><a href="/categories/Codex/Tutor/">Tutor</a><small>1</small></li>
+  
+    <li><a href="/categories/Life/Uncategorized/">Uncategorized</a><small>4</small></li>
+  
+    <li><a href="/categories/Uncategorized/">Uncategorized</a><small>15</small></li>
+  
+    <li><a href="/categories/Vision/">Vision</a><small>40</small></li>
+  
+  </ul>
+</div>
+
+		
+			
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/GTD/" style="font-size: 16.25px;">GTD</a><a href="/tags/PKM/" style="font-size: 15.50px;">PKM</a><a href="/tags/QQ/" style="font-size: 15.25px;">QQ</a><a href="/tags/cctv/" style="font-size: 15.00px;">cctv</a><a href="/tags/javascript/" style="font-size: 16.00px;">javascript</a><a href="/tags/meme/" style="font-size: 14.75px;">meme</a><a href="/tags/twitter/" style="font-size: 17.50px;">twitter</a><a href="/tags/世博/" style="font-size: 11.50px;">世博</a><a href="/tags/分享/" style="font-size: 13.00px;">分享</a><a href="/tags/前端/" style="font-size: 11.25px;">前端</a><a href="/tags/博客维护/" style="font-size: 19.00px;">博客维护</a><a href="/tags/参观/" style="font-size: 11.75px;">参观</a><a href="/tags/团队/" style="font-size: 12.50px;">团队</a><a href="/tags/图书/" style="font-size: 13.75px;">图书</a><a href="/tags/备份/" style="font-size: 13.50px;">备份</a><a href="/tags/学习/" style="font-size: 17.75px;">学习</a><a href="/tags/思路/" style="font-size: 14.00px;">思路</a><a href="/tags/总结/" style="font-size: 16.50px;">总结</a><a href="/tags/感想/" style="font-size: 19.50px;">感想</a><a href="/tags/手机/" style="font-size: 15.75px;">手机</a><a href="/tags/斯路/" style="font-size: 12.25px;">斯路</a><a href="/tags/旅游/" style="font-size: 12.00px;">旅游</a><a href="/tags/旅途/" style="font-size: 13.25px;">旅途</a><a href="/tags/日记/" style="font-size: 19.75px;">日记</a><a href="/tags/日食/" style="font-size: 10.50px;">日食</a><a href="/tags/春节/" style="font-size: 18.25px;">春节</a><a href="/tags/格莱美/" style="font-size: 10.00px;">格莱美</a><a href="/tags/榜单/" style="font-size: 10.25px;">榜单</a><a href="/tags/气场/" style="font-size: 12.75px;">气场</a><a href="/tags/网络/" style="font-size: 14.50px;">网络</a><a href="/tags/聚会/" style="font-size: 11.00px;">聚会</a><a href="/tags/节日/" style="font-size: 18.75px;">节日</a><a href="/tags/观测/" style="font-size: 10.75px;">观测</a><a href="/tags/视频/" style="font-size: 18.00px;">视频</a><a href="/tags/计划/" style="font-size: 17.25px;">计划</a><a href="/tags/译文/" style="font-size: 17.00px;">译文</a><a href="/tags/读后感/" style="font-size: 14.25px;">读后感</a><a href="/tags/资源/" style="font-size: 16.75px;">资源</a><a href="/tags/软件/" style="font-size: 18.50px;">软件</a><a href="/tags/音乐/" style="font-size: 19.25px;">音乐</a>
+  </div>
+</div>
+
+		
+			<div class="widget blogroll">
+  <h3 class="title">友情链接</h3>	
+	<ul>
+		
+			<li><a href="http://zhuli.me">Leigh</a></li>
+		
+			<li><a href="http://zoechan.me">Zoe</a></li>
+		
+			<li><a href="http://test">Test</a></li>
+		
+	</ul>
+</div>
+		
+</aside>
+	</div>
+	<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"zhulime"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
