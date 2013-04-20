@@ -61,6 +61,51 @@
 		<header>
 			
   
+    <h1 class="title"><a href="/2012/11/28/after-d2-salon/">D2沙龙后感</a></h1>
+  
+
+			
+				<time datetime="2012-11-28T07:04:04.000Z">2012 Nov 28</time>
+			
+		</header>
+		<div class="entry">
+			
+				<p>这个月 24 号去了阿里技术嘉年华 D2 专场。</p>
+<p>前面的分享不多说，虽说平时都没咋遇到，但是，都很专业，很干货。</p>
+<p>最后的访谈环节，我提了个问题, 对于前端来说，近一段时间 JS 如火如荼，包括 D2 在内，很多关于 js 的分享会，并且，面试当中，js 的题也是占了大部分，因此，对于在场的嘉宾来说，这么多时间来看，对前端而言，HTML，CSS，JS 如何权衡，是否有不重视 HTML， CSS 的现象？</p>
+<p>嘉宾们的回答很不错，尤其是阿当的回答，眼界问题。</p>
+<p>是的，也许甚至这个眼界不是别人影响的，而是自己造成的。</p>
+<p>我大学的专业是通信工程，而对前端来说有些计算机专业的基础课程，像 面向对象，数据结构，编译原理，计算机操作系统等并不熟悉，因此自己就潜意识地会有中感觉——我这些方面不如计算机专业的。而对于前端来说，三大件中，js 更偏向于编程，有时候需要这些基础知识，而我没有，自己给予自己一种畏惧，认为自己不行，然后看到各种面试题笔试题也都在问 js ，看到各种前辈在分享会上讲的东西，都是很深入的 js 的分享，而偏偏自己不愿意做一个所谓页面重构，我期待能熟练使用 js 的那一天，在 github 上面，host 一个自己的项目，或者给一些有名的项目提交代码等等。因此，自己会一直有一个感觉：JS 很重要，相当重要！</p>
+<p>而正式因为这种感觉，在加上自己的 HTML， CSS 方面水平也并不差，因此，在面试，笔试的时候，自己也更看中 js 。</p>
+<p>另外，阿当说的对， js 确实是一个快速考研一个人是否合格的好办法，js 题回答，前端基础基本就可以判定为合格，而 CSS 方面，入门门槛低，也许一个人能解决各种像素及问题，可以体现他的前端技术精湛，但在面试环节，要问到这种地步，很费力。</p>
+<p>每一个圈子的人都会说自己圈子的这个东西多少多少好，别的多少不好，放开眼界，多看看其他的圈子，让自己平衡平衡。</p>
+<p>感谢阿当，很受用，无论是这次的问答，还是之前看的他的那本书。</p>
+<p>从今天起，每天都要尽可能让自己安定下来，不急，不求快，踏踏实实地看完每一本书，认真实践书中的知识点，不被网络上的新技术搞迷茫，当然，也要更快的接触前沿技术，知道前端业界的趋势，加油吧，我可不要只做一个平平凡凡的前端。</p>
+
+			
+		</div>
+		<footer>
+			
+				
+					<div class="alignleft">
+						<a href="/2012/11/28/after-d2-salon/#more" class="more-link">Read More</a>
+					</div>
+				
+				
+
+			
+		</footer>
+	</div>
+</article>
+
+
+
+  <article class="post">
+	
+	<div class="post-content">
+		<header>
+			
+  
     <h1 class="title"><a href="/2012/08/12/when-a-coin-falls/">当一枚硬币落下时</a></h1>
   
 
@@ -215,90 +260,6 @@ advance/ wipe battery
 
 
 
-  <article class="post">
-	
-	<div class="post-content">
-		<header>
-			
-  
-    <h1 class="title"><a href="/2012/07/25/js-clone-array-and-concat-it/">一道传说中的国外的前端面试题的几种解法</a></h1>
-  
-
-			
-				<time datetime="2012-07-25T03:03:17.000Z">2012 Jul 25</time>
-			
-		</header>
-		<div class="entry">
-			
-				<p>所谓面试题，总是喜欢考一些冷僻的，或者细节性的东西。
-这是一道传说中的国外的前端面试题。来自 <a href="http://darcyclarke.me/development/front-end-job-interview-questions/" title="Front-end Job Interview Questions"></a>
-原体如下：</p>
-<blockquote>
-<p>Make this work: </p>
-<pre><code>[1,2,3,4,5].duplicator(); // [1,2,3,4,5,1,2,3,4,5]`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
-</code></pre>
-</blockquote>
-<pre><code>立刻想到了 js 有数组拼接的方法：concat()；
-&lt;pre <span class="keyword">class</span>=<span class="string">"prettyprint"</span>&gt;`
-<span class="function"><span class="keyword">function</span> <span class="title">duplicator</span><span class="params">()</span> {</span>
-    <span class="keyword">var</span> nArray = [];
-    <span class="keyword">var</span> origin = <span class="keyword">this</span>;
-    <span class="keyword">for</span> (<span class="keyword">var</span> i = origin.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) {
-        nArray[i] = origin[i];
-    };
-    <span class="keyword">return</span> origin.concat(nArray);
-}
-Array.prototype.duplicator = duplicator;
-console.log([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>].duplicator());
-`&lt;/pre&gt;
-这该是最容易想到的方法，创建了新的数组，然后通过 <span class="keyword">for</span> 循环遍历数组元素，并存入 nArray 中，这样就得到了一个一样的数组，然后使用 concat() 方法拼接即可。
-
-然后，作为一个前端，我们需要想如何减少代码量 “Write less, <span class="keyword">do</span> more!”。
-于是，不就是复制数组嘛，复制数组还有更巧妙的方法。
-原生数组有个切割数组的方法 slice() ，将其第一个参数设置为数组切割起始点 <span class="number">0</span>， 省略第二个参数，就可以做到将整个数组切割，也就是完成了复制。
-&lt;pre <span class="keyword">class</span>=<span class="string">"prettyprint"</span>&gt;`
-<span class="function"><span class="keyword">function</span> <span class="title">duplicator</span><span class="params">()</span> {</span>
-    <span class="keyword">return</span> <span class="keyword">this</span>.concat(<span class="keyword">this</span>.slice(<span class="number">0</span>));
-}
-Array.prototype.duplicator = duplicator;
-console.log([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>].duplicator());
-`&lt;/pre&gt;
-
-慢着，我们似乎多此一举了。。
-&lt;pre <span class="keyword">class</span>=<span class="string">"prettyprint"</span>&gt;`
-<span class="function"><span class="keyword">function</span> <span class="title">duplicator</span><span class="params">()</span> {</span>
-    <span class="keyword">return</span> <span class="keyword">this</span>.concat(<span class="keyword">this</span>);
-}
-Array.prototype.duplicator = duplicator;
-console.log([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>].duplicator());
-`&lt;/pre&gt;
-
-引申，其实 concat() 方法也可以复制数组的。
-&lt;pre <span class="keyword">class</span>=<span class="string">"prettyprint"</span>&gt;`
-<span class="function"><span class="keyword">function</span> <span class="title">clone</span><span class="params">()</span> {</span>
-    <span class="keyword">return</span> [].concat(<span class="keyword">this</span>);
-}
-</code></pre>
-<p>将此函数添加为数组的方法就可以用来复制数组了。</p>
-
-			
-		</div>
-		<footer>
-			
-				
-					<div class="alignleft">
-						<a href="/2012/07/25/js-clone-array-and-concat-it/#more" class="more-link">Read More</a>
-					</div>
-				
-				
-
-			
-		</footer>
-	</div>
-</article>
-
-
-
 
 <nav id="pagination" class="clearfix">
   
@@ -362,6 +323,7 @@ console.log([<span class="number">1</span>,<span class="number">2</span>,<span c
 	</div>
 	<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
+<script src="/js/jsemoticon.js"></script>
 
 
 

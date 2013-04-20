@@ -4,13 +4,24 @@
   <subtitle><![CDATA[行于斯路…]]></subtitle>
   <link href="http://hexo.zhuli.me/atom.xml" rel="self"/>
   <link href="http://hexo.zhuli.me"/>
-  <updated>2013-04-20T05:19:54.742Z</updated>
+  <updated>2013-04-20T11:45:54.728Z</updated>
   <id>http://hexo.zhuli.me/</id>
   <author>
     <name><![CDATA[Leigh Zhu]]></name>
     <email><![CDATA[i@zhuli.me]]></email>
   </author>
   <generator uri="http://zespia.tw/hexo">Hexo</generator>
+  <entry>
+    <title type="html"><![CDATA[smilies test]]></title>
+    <link href="http://hexo.zhuli.me/2013/04/20/smilies-test/"/>
+    <id>http://hexo.zhuli.me/2013/04/20/smilies-test/</id>
+    <published>2013-04-20T11:41:48.000Z</published>
+    <updated>2013-04-20T11:45:37.000Z</updated>
+    <content type="html"><![CDATA[<p>这篇文章用于测试表情 js 是否正常，嘿嘿。
+比如说呢 [ali 啊啊啊][ali 嘲弄] 的。好像和 markdown 冲突了尼玛！[ali 囧] 再测试测试</p>
+<p>额。。。。[bed 扭腰][ali 感动]。因为分号好难控制呀，中文的和英文，傻傻分不清楚：:</p>
+]]></content>
+  </entry>
   <entry>
     <title type="html"><![CDATA[Evernote“笔记本”和“标签”的心得]]></title>
     <link href="http://hexo.zhuli.me/2013/04/13/evernote-notebook-tag/"/>
@@ -1026,39 +1037,5 @@ monospace 则是用了 ixtab 包里的 Bitstream Vera Sans Mono 字体，效果�
     <category scheme="http://hexo.zhuli.me/tags/font/" term="font"/>
     <category scheme="http://hexo.zhuli.me/tags/kindle/" term="kindle"/>
     <category scheme="http://hexo.zhuli.me/categories/Tutor/" term="Tutor"/>
-  </entry>
-  <entry>
-    <title type="html"><![CDATA[Kindle 折腾起步，越狱及备份]]></title>
-    <link href="http://hexo.zhuli.me/2012/02/29/jailbreak-and-backup-kindle-touch/"/>
-    <id>http://hexo.zhuli.me/2012/02/29/jailbreak-and-backup-kindle-touch/</id>
-    <published>2012-02-29T07:27:06.000Z</published>
-    <updated>2013-04-20T04:38:15.000Z</updated>
-    <content type="html"><![CDATA[<p>所谓越狱，可能大家听到得比较多的是水果产品的越狱，大家对越狱可能也有所误解，所谓“越狱”，就是指获得自由，对系统软件来说，有就是获得 root/ 高权限。</p>
-<p>所有的折腾，比如改字体和去广告，换屏保等等，都需要先越狱。</p>
-<p>需要注意的是，Kindle 的固件升级是增量更新，所以在升级之前，需要把所有的 hack 都还原，否则校验会失败，升级不成功，所以，在做每一步之前，请先明确，你知道如何还原它，本文也介绍了一种备份方法，有条件的，务必备份一下，否则，反厂修理是一个漫长又痛苦的过程。</p>
-<p>现在 Kindle Touch 的固件版本是 5.0.3, 之前 Yifan Lu 的 mp3 越狱 bug 已经被 Amazon 修复，但幸于 MobileRead 论坛的 <a href="http://www.mobileread.com/forums/showpost.php?p=1902438&amp;postcount=41">ixtab</a> 发现了 <a href="http://www.mobileread.com/forums/attachment.php?attachmentid=80560&amp;d=1325262029">data.tar.gz</a>  的方法，一样可以越狱。对此， Yifan Lu 更新了相应的越狱包（下<a href="http://yifan.lu/p/kindle-touch-jailbreak">载地址</a>/<a href="http://www.mobileread.com/forums/attachment.php?attachmentid=80560&amp;d=1325262029">备用 ixtab 的文件</a>）</p>
-<p>推荐使用 Yifan Lu 准备的包，里面包含了反越狱文件。</p>
-<p>越狱很简单，拷贝 data.tar.gz 拷贝到 kindle 根目录，然后安全弹出，拔掉 usb ，重启 (Menu -&gt; Settings -&gt; Menu -&gt; Restart)，看到一个名为 You are Jailbroken 越狱就完成了。</p>
-<p>接下来是安装 Yifan Lu 的 <a href="https://github.com/downloads/yifanlu/KindleTool/simple_usbnet_1.1.zip">Simple usbnet update (supports wifi ssh and resetting root password)</a> ，这也是很多 hack 的基础，很简单，下载文件（<a href="https://github.com/downloads/yifanlu/KindleTool/simple_usbnet_1.1.zip">地址</a>），解压缩后把 <em>*</em>.bin 文件放于 kindle 根目录，然后点击 Menu -&gt; Settings -&gt; Menu -&gt; Update Your Kindle 等待重启即可。</p>
-<p>安装完后，在 Home 界面，点击最上方 Tap to Search 框，输入 ;un 即可打开 / 关闭 USBNetwork，然后链接电脑即可，接下来，如果你的电脑是 Windows 系统，则需要安装相关 ssh 软件进行下一步操作。</p>
-<p>提示：建议修改 ssh 的 root 密码，在 Kindle 搜索框继续输入 <tt>;un password &lt;new root password&gt;</tt> 设置密码。</p>
-<p>而对于 Linux 系统，打开终端 <tt>ifconfig usb0 192.168.15.1; ssh root@192.168.15.244</tt> 即可链接到你的 kindle，链接完成后，如果有英文提示你 mntroot 只读，则表示链接成功。</p>
-<p>如果你现在正在使用 Linux 系统，那么可以开始对 Kindle 进行备份了。</p>
-<p>先介绍下 kindle touch 的分区：</p>
-<ol>
-<li>分区 1（mmcblk0p1/ EXT3，350 MB）：根文件系统。包含操作系统和框架文件。如果这个分区被破坏，Kindle Touch 就不能正常使用了。</li>
-<li>分区 2（EXT3，64 MB）：紧急恢复系统，你平时不应该去看，更不应该去动手的分区。</li>
-<li>分区 3（EXT3，32 MB）：挂载于 /var/local，包含本地设置。</li>
-<li>分区 4（FAT32，3.3 GB）：即平时已移动盘显示，存放书记文档的地方，挂载在 /mnt/us 下。
-因此，最需要做好备份的就是 1 和 2 分区了。</li>
-</ol>
-<p>好了，那么我们打开一个终端窗口，没错的话，现在你有两个终端窗口，一个是之前 ssh 链接 kindle Touch 的，我们称其 kindle，另一个是刚刚打开的，没有执行任何命令的窗口，我们称其 host</p>
-<p>依次在 host 执行 <tt>nc -l 31337|dd of=mmcblk0p1.bin</tt>  在 kindle 执行 <tt>dd if=/dev/mmcblk0p1|nc 192.168.15.1 31337</tt></p>
-<p>执行完之后，将上述命令中 <tt>mmcblk0p1</tt> 改为 <tt>mmcblk0p2,<tt>mmcblk0p3,<tt>mmcblk0p4 即可备份所有四个分区。</tt></tt></tt></p>
-<p>这样就完成了备份。</p>
-]]></content>
-    <category scheme="http://hexo.zhuli.me/tags/kindle/" term="kindle"/>
-    <category scheme="http://hexo.zhuli.me/categories/Codex/" term="Codex"/>
-    <category scheme="http://hexo.zhuli.me/categories/Codex/Tutor/" term="Tutor"/>
   </entry>
 </feed>

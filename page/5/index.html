@@ -61,6 +61,79 @@
 		<header>
 			
   
+    <h1 class="title"><a href="/2012/07/11/js-exclamation-mark-before-function/">JavaScript 中在 function() {} 前面加感叹号的作用</a></h1>
+  
+
+			
+				<time datetime="2012-07-11T08:48:54.000Z">2012 Jul 11</time>
+			
+		</header>
+		<div class="entry">
+			
+				<p>闲着无聊想去看看 Twitter 的 Bootstrap： <a href="https://github.com/twitter/bootstrap">https://github.com/twitter/bootstrap</a></p>
+<p>翻看他们的 js ，发现他们代码中有很多类似于如下的情形：</p>
+<pre><code>!function ($) {
+    //do sth
+}(window.jQuery);
+`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
+
+很奇怪的发现他们在 function 前面加上了感叹号，但往下看到结尾部分的代码 (window.jQuery) 似乎明白了点什么，于是去 stackoverflow 上搜了下。
+
+果然有很多人提过这个问题，这里放出一个： [What does the exclamation mark do before the function?](http://stackoverflow.com/questions/3755606/what-does-the-exclamation-mark-do-before-the-function)
+
+正如之前所想，其加上了 ！ 的作用，即将前面的匿名函数 
+
+function ($) {}  这是一个函数的声明，当我们需要让它立即执行，就需要使用 （） 操作符将函数调用，而  () 操作符需要前面是一个表达式，通常，我们会使用一对圆括号将匿名函数声明转换成表达式。所以，我们通常是这么写的：
+
+<span class="tag">&lt;<span class="title">pre</span>&gt;</span>`(function () {}) ()`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
+
+那么，其实，最后的括号是用来执行函数的，我们只要保证它前面是个结果是个函数的表达式就可以了。那么，其实， js 中很多操作符，我们都可以使用，如 [JavaScript 秘密花园](http://bonsaiden.github.com/JavaScript-Garden/zh/#function.scopes) 中所说，我们可以写成这个样子：
+
+<span class="tag">&lt;<span class="title">pre</span>&gt;</span>`+function(){}();
+(function(){}());`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
+
+当然，理论上也是可以这么写的：
+
+<span class="tag">&lt;<span class="title">pre</span>&gt;</span>`-function(){}();
+~function(){}();`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
+
+至于为什么可以这么做呢，那是因为 () 操作符比 ! 操作符的优先级要高两级，[参见 MDN](https://developer.mozilla.org/en/JavaScript/Reference/Operators/Operator_Precedence)
+
+所以如果是这么一段代码：
+
+<span class="tag">&lt;<span class="title">pre</span>&gt;</span>`!function () {
+    return false;
+} ()
+</code></pre>
+<p>执行过程便是，函数返回 false 然后取反，变为 true 。</p>
+<p>那么，问题又来了，我们该选哪种写法呢？ 为什么用 ! 不用 + 呢？
+看到 <a href="http://www.swordair.com/blog/2011/10/714/">葵中剑</a> 跑过测试，我也去跑了几次，但是结果参差不齐，不知道有没有参考意义。</p>
+<p>不过，从感官上来说， ! 相比 (...) 不仅减少了一个字符（当然这个效果应该不明显），而且使得代码更加易读，手头没有智能点的编辑器的话，也不用费劲去找括号的对应了，再书写代码时候，一个 ! 总比 (...) 出错的概率小了</p>
+
+			
+		</div>
+		<footer>
+			
+				
+					<div class="alignleft">
+						<a href="/2012/07/11/js-exclamation-mark-before-function/#more" class="more-link">Read More</a>
+					</div>
+				
+				
+
+			
+		</footer>
+	</div>
+</article>
+
+
+
+  <article class="post">
+	
+	<div class="post-content">
+		<header>
+			
+  
     <h1 class="title"><a href="/2012/07/02/intern-1/">实习日志.1</a></h1>
   
 
@@ -144,201 +217,6 @@
 
 
 
-  <article class="post">
-	
-	<div class="post-content">
-		<header>
-			
-  
-    <h1 class="title"><a href="/2012/05/04/add-custom-smilies-to-wordpress/">自定义/增加 WordPress 表情</a></h1>
-  
-
-			
-				<time datetime="2012-05-04T10:11:06.000Z">2012 May 4</time>
-			
-		</header>
-		<div class="entry">
-			
-				<p>WordPress 自身自带了 22 个 表情图标。</p>
-<p>如果你开启了“表情转换”功能的话， 就会将一些表情字符转换为相应的表情图片 比如 “：）” ，该功能开启方法如下：</p>
-<p><em>注：[本文为了示例，将相应冒号专转换为中文冒号]</em></p>
-<ol>
-<li>前往站点后台</li>
-<li>选择<em>设置 -&gt; 撰写</em></li>
-<li>在<em>格式</em>区域，<strong>取消选择</strong>&quot;<em>转换如 :-)、:-P 等文字表情符号为图像</em>&quot; 的选项
-然后今天，Zoe 说她想要新浪微博上一系列墩墩的表情（彼尔德），于是着手准备替换默认表情，然后就发现了很严重的问题，发现 WordPress 默认的表情库相当不理想，比如“开心”的表情，它有 “：smile：”， “：grin：”， “：lol：”，“：mrgreen：” ，再看围脖上的那套，哪来那么多开心的表情啊。另外， WordPress 还有诸如 “：arrow：” 这种。。。。。情何以堪。</li>
-</ol>
-<p>虽然表情数量刚好一样是 22 个，但是，如果只是简单的替换 WordPress 中相应的 “icon_*.gif” 的话，以前文章以及评论中写过的表情就乱套了，比如曾经你发了个微笑，现在的图片确实生气。。。。</p>
-<p>能不能另外自定义这些表情符号以及他们对应的图片呢？显然是可以的，于是就产生了这篇文章。</p>
-<p>原理，查看了 wp 官方的 <a href="http://codex.wordpress.org/Using_Smilies" title="Using Smilies">Codex - Using Smilies </a>，</p>
-<blockquote>
-<p>If you really must change the file names of the images, edit the file that refers to these images, &#39;<strong>vars.php&#39;</strong> (in WordPress 2.2, they&#39;re located in &#39;<strong>functions.php&#39;</strong>), situated in the <tt>/wp-includes/</tt> directory.
-然后，就找到了那个文件，查找 “smilies”，就可以发现这个函数：</p>
-</blockquote>
-<pre><code><span class="xml">function smilies_init() {
-    ......
-}`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
-好的，既然找到根源了，我们就可以动手了。
-
-下面是修改方法：
-
-</span><span class="comment"># 1. 搜集你需要的表情。</span><span class="xml">
-
-将他们们命名，并想好他们的相应的表情符号（关键字）
-
-比如： ：<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #</span><span class="number">993300</span><span class="xml">;"&gt;：bed 拍脸：<span class="tag">&lt;/<span class="title">span</span>&gt;</span> =》<span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color: #</span><span class="number">339966</span><span class="xml">;"&gt; bed_pailian.gif<span class="tag">&lt;/<span class="title">span</span>&gt;</span>
-
-我把他们都保存在了我的主题目录下的 _ images/smilies_ 文件夹下，这样，WP 升级后不会将其覆盖掉（还原掉，你不想的）
-
-</span><span class="comment"># 2\. 改造主题的 function.php</span><span class="xml">
-
-打开你的 _function.php _ 它一般位于：_$ 站点目录 /wp-content/themes/ 主题目录 / _ 下面，或者你也可以在 WP 后台 “Appearance” =》 “Editor” ，然后找到 _ function.php _。（注意：我建议不要直接在后台改造你的主题，因为如果出错，你的博客就下线了 :bed 蹬腿: ）
-
-在空白位置，一般你可以选在该文件的最后面，另起一行，然后输入下面代码：
-<span class="tag">&lt;<span class="title">pre</span>&gt;</span>`/**
- * Plugin Name: Add Custom Smilies
- * Plugin URI: http://zhuli.me/</span><span class="number">2012</span><span class="xml">/</span><span class="number">05</span><span class="xml">/</span><span class="number">04</span><span class="xml">/add-custom-smilies-to-wordpress.html
- * Description: Add More Smilies to your WP.
- * Version: </span><span class="number">0.0</span><span class="xml"></span><span class="number">.1</span><span class="xml">
- * Author: Leigh
- * Author URI: http://zhuli.me/
- */
-function evolz_smilies_init() {
-    global </span><span class="variable">$wpsmiliestrans</span><span class="xml">, </span><span class="variable">$wp_smiliessearch</span><span class="xml">, </span><span class="variable">$wp_smiliesreplace</span><span class="xml">;
-
-    // don't bother setting up smilies if they are disabled
-    if ( !get_option( 'use_smilies' ) )
-        return;
-
-    if ( !isset( </span><span class="variable">$wpsmiliestrans</span><span class="xml"> ) ) {
-        </span><span class="variable">$wpsmiliestrans</span><span class="xml"> = array(
-                ':bed 奔跑:' =&amp;gt; 'bed_benpao.gif',
-                ':bed 蹬腿:' =&amp;gt; 'bed_dengtui.gif',
-                ':bed 飞吻:' =&amp;gt; 'bed_feiwen.gif',
-                ':bed 好饱:' =&amp;gt; 'bed_haobao.gif',
-                ':bed 嘿哈:' =&amp;gt; 'bed_heiha.gif',
-              ':bed 举哑铃:' =&amp;gt; 'bed_juyaling.gif',
-              ':bed 啦啦啦:' =&amp;gt; 'bed_lalala.gif',
-                ':bed 练腰:' =&amp;gt; 'bed_lianyao.gif',
-                ':bed 凌乱:' =&amp;gt; 'bed_lingluan.gif',
-                ':bed 拍脸:' =&amp;gt; 'bed_pailian.gif',
-                ':bed 拍手:' =&amp;gt; 'bed_paishou.gif',
-                  ':bed 跑:' =&amp;gt; 'bed_pao.gif',
-                  ':bed 皮:' =&amp;gt; 'bed_pi.gif',
-                ':bed 飘忽:' =&amp;gt; 'bed_piaohu.gif',
-                ':bed 揉眼:' =&amp;gt; 'bed_rouyan.gif',
-                ':bed 撒娇:' =&amp;gt; 'bed_sajiao.gif',
-                ':bed 踏步:' =&amp;gt; 'bed_tabu.gif',
-                ':bed 弹跳:' =&amp;gt; 'bed_tantiao.gif',
-                  ':bed 跳:' =&amp;gt; 'bed_tiao.gif',
-                   ':bed 兴奋:' =&amp;gt; 'bed_xingfen.gif',
-            ':bed 仰卧起坐:' =&amp;gt; 'bed_yangwoqizuo.gif',
-                ':bed 转圈:' =&amp;gt; 'bed_zhuanquan.gif',
-                ':mrgreen:' =&amp;gt; 'icon_mrgreen.gif',
-                ':neutral:' =&amp;gt; 'icon_neutral.gif',
-                ':twisted:' =&amp;gt; 'icon_twisted.gif',
-                  ':arrow:' =&amp;gt; 'icon_arrow.gif',
-                  ':shock:' =&amp;gt; 'icon_eek.gif',
-                  ':smile:' =&amp;gt; 'icon_smile.gif',
-                    ':???:' =&amp;gt; 'icon_confused.gif',
-                   ':cool:' =&amp;gt; 'icon_cool.gif',
-                   ':evil:' =&amp;gt; 'icon_evil.gif',
-                   ':grin:' =&amp;gt; 'icon_biggrin.gif',
-                   ':idea:' =&amp;gt; 'icon_idea.gif',
-                   ':oops:' =&amp;gt; 'icon_redface.gif',
-                   ':razz:' =&amp;gt; 'icon_razz.gif',
-                   ':roll:' =&amp;gt; 'icon_rolleyes.gif',
-                   ':wink:' =&amp;gt; 'icon_wink.gif',
-                    ':cry:' =&amp;gt; 'icon_cry.gif',
-                    ':eek:' =&amp;gt; 'icon_surprised.gif',
-                    ':lol:' =&amp;gt; 'icon_lol.gif',
-                    ':mad:' =&amp;gt; 'icon_mad.gif',
-                    ':sad:' =&amp;gt; 'icon_sad.gif',
-                      '</span><span class="number">8</span><span class="xml">-)' =&amp;gt; 'icon_cool.gif',
-                      '</span><span class="number">8</span><span class="xml">-O' =&amp;gt; 'icon_eek.gif',
-                      ':-(' =&amp;gt; 'icon_sad.gif',
-                      ':-)' =&amp;gt; 'icon_smile.gif',
-                      ':-?' =&amp;gt; 'icon_confused.gif',
-                      ':-D' =&amp;gt; 'icon_biggrin.gif',
-                      ':-P' =&amp;gt; 'icon_razz.gif',
-                      ':-o' =&amp;gt; 'icon_surprised.gif',
-                      ':-x' =&amp;gt; 'icon_mad.gif',
-                      ':-|' =&amp;gt; 'icon_neutral.gif',
-                      ';-)' =&amp;gt; 'icon_wink.gif',
-                       '</span><span class="number">8</span><span class="xml">)' =&amp;gt; 'icon_cool.gif',
-                       '</span><span class="number">8</span><span class="xml">O' =&amp;gt; 'icon_eek.gif',
-                       ':(' =&amp;gt; 'icon_sad.gif',
-                       ':)' =&amp;gt; 'icon_smile.gif',
-                       ':?' =&amp;gt; 'icon_confused.gif',
-                       ':D' =&amp;gt; 'icon_biggrin.gif',
-                       ':P' =&amp;gt; 'icon_razz.gif',
-                       ':o' =&amp;gt; 'icon_surprised.gif',
-                       ':x' =&amp;gt; 'icon_mad.gif',
-                       ':|' =&amp;gt; 'icon_neutral.gif',
-                       ';)' =&amp;gt; 'icon_wink.gif',
-                      ':!:' =&amp;gt; 'icon_exclaim.gif',
-                      ':?:' =&amp;gt; 'icon_question.gif',
-        );
-    }
-    </span><span class="variable">$siteurl</span><span class="xml"> = get_option( 'siteurl' );
-    foreach ( (array) </span><span class="variable">$wpsmiliestrans</span><span class="xml"> as </span><span class="variable">$smiley</span><span class="xml"> =&amp;gt; </span><span class="variable">$img</span><span class="xml"> ) {
-    </span><span class="variable">$wp_smiliessearch</span><span class="xml">[] = '/(\s|^)' . preg_quote( </span><span class="variable">$smiley</span><span class="xml">, '/' ) . '(\s|$)/';
-    </span><span class="variable">$smiley_masked</span><span class="xml"> = attribute_escape( trim( </span><span class="variable">$smiley</span><span class="xml"> ) );
-    </span><span class="variable">$wp_smiliesreplace</span><span class="xml">[] = " &amp;lt;img src='</span><span class="variable">$siteurl</span><span class="xml">/wp-includes/images/smilies/</span><span class="variable">$img</span><span class="xml">' alt='</span><span class="variable">$smiley_masked</span><span class="xml">' class='wp-smiley' /&amp;gt; ";
-    }
-}
-
-remove_action('init', 'smilies_init', </span><span class="number">5</span><span class="xml">);
-add_action('init', 'evolz_smilies_init', </span><span class="number">5</span><span class="xml">);`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
-我们可以看到上面代码最后的两条语句，倒数第二条移除了 WP 自带的 _smiles_init_ 函数，最后一条启用了我们自定义的  _ evolz_smilies_init  _ 函数。
-
-这样，WP 在解析文章数据时候，便会便会在我们自定义的表情数组中查抄我们的表情了。
-
-接下来，你要做的事情就是，定义你的表情列表，如上面代码中所示。
-_ '：bed 奔跑：' =&amp;gt; 'bed_benpao.gif', _ 前面引号中的事表情符号（注意我这里为了演示用了中文冒号，你在定义的时候需要注意！），也就是你在写文章或评论时候输入的文字，后面引号中的就是相应的文件名了。
-
-现在，我的表情和 新浪微博 的表情关键字是一样的了， 只是围脖用 [] 包含，而我用 :: 包含，这样做是因为，如上代码，我在自定义的表情后面仍然加上了 WP 默认的关键字和文件名列表，这样，你之前文章和评论中所引用的表情仍然可以保持不变，等于是在原来基础上多了一套表情了  :bed 啦啦啦:
-
-</span><span class="comment"># 3. 将表情目录映射到我们自己的主题目录下的 _images/smilies_</span><span class="xml">
-
-使用 我爱水煮鱼 的代码：
-<span class="tag">&lt;<span class="title">pre</span>&gt;</span>`/**
- * Plugin Name: Custom Smilies Src
- * Plugin URI: http://fairyfish.net/m/custom_smilies_src/
- * Description: Custome Smiles Src
- * Version: </span><span class="number">0.1</span><span class="xml">
- * Author: Denis
- * Author URI: http://fairyfish.net/
- */
-add_filter('smilies_src','custom_smilies_src',</span><span class="number">1</span><span class="xml">,</span><span class="number">10</span><span class="xml">);
-function custom_smilies_src (</span><span class="variable">$img_src</span><span class="xml">, </span><span class="variable">$img</span><span class="xml">, </span><span class="variable">$siteurl</span><span class="xml">){
-    return </span><span class="variable">$siteurl.</span><span class="xml">'/wp-content/themes/evolz/images/smilies/'.</span><span class="variable">$img</span><span class="xml">;
-}</span>
-</code></pre>
-<p>这段代码的用途就是将 WP 的默认表情路径 <em>$siteurl/wp-includes/images/smilies/ </em> 映射到  $siteurl/wp-content/themes/ 你的主题目录 /images/smilies/</p>
-<h1>4. Enjoy it.</h1>
-<p>好的，没有第四步了，现在你可以在文章和评论中插入诸如  “ <em>：表情符号（关键字）：</em>” （不包括引号，另外再注：我是为了演示而使用了中文冒号）来使用这些表情啦 :bed 跳:</p>
-<h1>5. 等等，还有一件事</h1>
-<p>我们知道，WP 默认编辑器会莫名其妙删除一些空格，所以，如果是在 Visual 模式下写文章的的话，可能就会悲剧了，哎，这算个 bug 吧，改天看看能不能解决掉。</p>
-
-			
-		</div>
-		<footer>
-			
-				
-					<div class="alignleft">
-						<a href="/2012/05/04/add-custom-smilies-to-wordpress/#more" class="more-link">Read More</a>
-					</div>
-				
-				
-
-			
-		</footer>
-	</div>
-</article>
-
-
-
 
 <nav id="pagination" class="clearfix">
   
@@ -402,6 +280,7 @@ function custom_smilies_src (</span><span class="variable">$img_src</span><span 
 	</div>
 	<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
+<script src="/js/jsemoticon.js"></script>
 
 
 

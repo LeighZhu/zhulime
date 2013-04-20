@@ -65,6 +65,90 @@
 		<header>
 			
   
+    <h1 class="title"><a href="/2012/07/25/js-clone-array-and-concat-it/">一道传说中的国外的前端面试题的几种解法</a></h1>
+  
+
+			
+				<time datetime="2012-07-25T03:03:17.000Z">2012 Jul 25</time>
+			
+		</header>
+		<div class="entry">
+			
+				<p>所谓面试题，总是喜欢考一些冷僻的，或者细节性的东西。
+这是一道传说中的国外的前端面试题。来自 <a href="http://darcyclarke.me/development/front-end-job-interview-questions/" title="Front-end Job Interview Questions"></a>
+原体如下：</p>
+<blockquote>
+<p>Make this work: </p>
+<pre><code>[1,2,3,4,5].duplicator(); // [1,2,3,4,5,1,2,3,4,5]`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
+</code></pre>
+</blockquote>
+<pre><code>立刻想到了 js 有数组拼接的方法：concat()；
+&lt;pre <span class="keyword">class</span>=<span class="string">"prettyprint"</span>&gt;`
+<span class="function"><span class="keyword">function</span> <span class="title">duplicator</span><span class="params">()</span> {</span>
+    <span class="keyword">var</span> nArray = [];
+    <span class="keyword">var</span> origin = <span class="keyword">this</span>;
+    <span class="keyword">for</span> (<span class="keyword">var</span> i = origin.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) {
+        nArray[i] = origin[i];
+    };
+    <span class="keyword">return</span> origin.concat(nArray);
+}
+Array.prototype.duplicator = duplicator;
+console.log([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>].duplicator());
+`&lt;/pre&gt;
+这该是最容易想到的方法，创建了新的数组，然后通过 <span class="keyword">for</span> 循环遍历数组元素，并存入 nArray 中，这样就得到了一个一样的数组，然后使用 concat() 方法拼接即可。
+
+然后，作为一个前端，我们需要想如何减少代码量 “Write less, <span class="keyword">do</span> more!”。
+于是，不就是复制数组嘛，复制数组还有更巧妙的方法。
+原生数组有个切割数组的方法 slice() ，将其第一个参数设置为数组切割起始点 <span class="number">0</span>， 省略第二个参数，就可以做到将整个数组切割，也就是完成了复制。
+&lt;pre <span class="keyword">class</span>=<span class="string">"prettyprint"</span>&gt;`
+<span class="function"><span class="keyword">function</span> <span class="title">duplicator</span><span class="params">()</span> {</span>
+    <span class="keyword">return</span> <span class="keyword">this</span>.concat(<span class="keyword">this</span>.slice(<span class="number">0</span>));
+}
+Array.prototype.duplicator = duplicator;
+console.log([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>].duplicator());
+`&lt;/pre&gt;
+
+慢着，我们似乎多此一举了。。
+&lt;pre <span class="keyword">class</span>=<span class="string">"prettyprint"</span>&gt;`
+<span class="function"><span class="keyword">function</span> <span class="title">duplicator</span><span class="params">()</span> {</span>
+    <span class="keyword">return</span> <span class="keyword">this</span>.concat(<span class="keyword">this</span>);
+}
+Array.prototype.duplicator = duplicator;
+console.log([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>].duplicator());
+`&lt;/pre&gt;
+
+引申，其实 concat() 方法也可以复制数组的。
+&lt;pre <span class="keyword">class</span>=<span class="string">"prettyprint"</span>&gt;`
+<span class="function"><span class="keyword">function</span> <span class="title">clone</span><span class="params">()</span> {</span>
+    <span class="keyword">return</span> [].concat(<span class="keyword">this</span>);
+}
+</code></pre>
+<p>将此函数添加为数组的方法就可以用来复制数组了。</p>
+
+			
+		</div>
+		<footer>
+			
+				
+					<div class="alignleft">
+						<a href="/2012/07/25/js-clone-array-and-concat-it/#more" class="more-link">Read More</a>
+					</div>
+				
+				
+
+			
+		</footer>
+	</div>
+</article>
+
+
+  
+    <article class="post">
+	
+	<div class="post-content">
+		<header>
+			
+  
     <h1 class="title"><a href="/2012/07/19/multi-nodejs-sites-on-nginx/">在 nginx 环境下开启多个站点（node.js）</a></h1>
   
 
@@ -247,79 +331,6 @@ http.createServer(function (req, res) {
 
 
   
-    <article class="post">
-	
-	<div class="post-content">
-		<header>
-			
-  
-    <h1 class="title"><a href="/2012/07/11/js-exclamation-mark-before-function/">JavaScript 中在 function() {} 前面加感叹号的作用</a></h1>
-  
-
-			
-				<time datetime="2012-07-11T08:48:54.000Z">2012 Jul 11</time>
-			
-		</header>
-		<div class="entry">
-			
-				<p>闲着无聊想去看看 Twitter 的 Bootstrap： <a href="https://github.com/twitter/bootstrap">https://github.com/twitter/bootstrap</a></p>
-<p>翻看他们的 js ，发现他们代码中有很多类似于如下的情形：</p>
-<pre><code>!function ($) {
-    //do sth
-}(window.jQuery);
-`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
-
-很奇怪的发现他们在 function 前面加上了感叹号，但往下看到结尾部分的代码 (window.jQuery) 似乎明白了点什么，于是去 stackoverflow 上搜了下。
-
-果然有很多人提过这个问题，这里放出一个： [What does the exclamation mark do before the function?](http://stackoverflow.com/questions/3755606/what-does-the-exclamation-mark-do-before-the-function)
-
-正如之前所想，其加上了 ！ 的作用，即将前面的匿名函数 
-
-function ($) {}  这是一个函数的声明，当我们需要让它立即执行，就需要使用 （） 操作符将函数调用，而  () 操作符需要前面是一个表达式，通常，我们会使用一对圆括号将匿名函数声明转换成表达式。所以，我们通常是这么写的：
-
-<span class="tag">&lt;<span class="title">pre</span>&gt;</span>`(function () {}) ()`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
-
-那么，其实，最后的括号是用来执行函数的，我们只要保证它前面是个结果是个函数的表达式就可以了。那么，其实， js 中很多操作符，我们都可以使用，如 [JavaScript 秘密花园](http://bonsaiden.github.com/JavaScript-Garden/zh/#function.scopes) 中所说，我们可以写成这个样子：
-
-<span class="tag">&lt;<span class="title">pre</span>&gt;</span>`+function(){}();
-(function(){}());`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
-
-当然，理论上也是可以这么写的：
-
-<span class="tag">&lt;<span class="title">pre</span>&gt;</span>`-function(){}();
-~function(){}();`<span class="tag">&lt;/<span class="title">pre</span>&gt;</span>
-
-至于为什么可以这么做呢，那是因为 () 操作符比 ! 操作符的优先级要高两级，[参见 MDN](https://developer.mozilla.org/en/JavaScript/Reference/Operators/Operator_Precedence)
-
-所以如果是这么一段代码：
-
-<span class="tag">&lt;<span class="title">pre</span>&gt;</span>`!function () {
-    return false;
-} ()
-</code></pre>
-<p>执行过程便是，函数返回 false 然后取反，变为 true 。</p>
-<p>那么，问题又来了，我们该选哪种写法呢？ 为什么用 ! 不用 + 呢？
-看到 <a href="http://www.swordair.com/blog/2011/10/714/">葵中剑</a> 跑过测试，我也去跑了几次，但是结果参差不齐，不知道有没有参考意义。</p>
-<p>不过，从感官上来说， ! 相比 (...) 不仅减少了一个字符（当然这个效果应该不明显），而且使得代码更加易读，手头没有智能点的编辑器的话，也不用费劲去找括号的对应了，再书写代码时候，一个 ! 总比 (...) 出错的概率小了</p>
-
-			
-		</div>
-		<footer>
-			
-				
-					<div class="alignleft">
-						<a href="/2012/07/11/js-exclamation-mark-before-function/#more" class="more-link">Read More</a>
-					</div>
-				
-				
-
-			
-		</footer>
-	</div>
-</article>
-
-
-  
 
   <nav id="pagination" class="clearfix">
   
@@ -384,6 +395,7 @@ function ($) {}  这是一个函数的声明，当我们需要让它立即执行
 	</div>
 	<script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
+<script src="/js/jsemoticon.js"></script>
 
 
 
