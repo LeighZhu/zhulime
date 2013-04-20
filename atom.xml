@@ -4,7 +4,7 @@
   <subtitle><![CDATA[行于斯路…]]></subtitle>
   <link href="http://hexo.zhuli.me/atom.xml" rel="self"/>
   <link href="http://hexo.zhuli.me"/>
-  <updated>2013-04-20T11:48:52.097Z</updated>
+  <updated>2013-04-20T11:50:28.462Z</updated>
   <id>http://hexo.zhuli.me/</id>
   <author>
     <name><![CDATA[Leigh Zhu]]></name>
@@ -16,10 +16,11 @@
     <link href="http://hexo.zhuli.me/2013/04/20/smilies-test/"/>
     <id>http://hexo.zhuli.me/2013/04/20/smilies-test/</id>
     <published>2013-04-20T11:41:48.000Z</published>
-    <updated>2013-04-20T11:45:37.000Z</updated>
-    <content type="html"><![CDATA[<p>这篇文章用于测试表情 js 是否正常，嘿嘿。
-比如说呢 [ali 啊啊啊][ali 嘲弄] 的。好像和 markdown 冲突了尼玛！[ali 囧] 再测试测试</p>
-<p>额。。。。[bed 扭腰][ali 感动]。因为分号好难控制呀，中文的和英文，傻傻分不清楚：:</p>
+    <updated>2013-04-20T11:50:16.000Z</updated>
+    <content type="html"><![CDATA[<p>这篇文章用于测试表情js是否正常，嘿嘿。
+比如说呢[ali啊啊啊][ali嘲弄]的。好像和markdown冲突了尼玛！[ali囧]再测试测试</p>
+<p>额。。。。[bed扭腰][ali感动]。因为分号好难控制呀，中文的和英文，傻傻分不清楚：:</p>
+<p>呵呵呵   再试试吧  居然加空格 [ali啊啊啊]</p>
 ]]></content>
   </entry>
   <entry>
