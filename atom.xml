@@ -4,7 +4,7 @@
   <subtitle><![CDATA[行于斯路…]]></subtitle>
   <link href="http://hexo.zhuli.me/atom.xml" rel="self"/>
   <link href="http://hexo.zhuli.me"/>
-  <updated>2013-04-20T11:55:02.463Z</updated>
+  <updated>2013-04-20T12:05:29.144Z</updated>
   <id>http://hexo.zhuli.me/</id>
   <author>
     <name><![CDATA[Leigh Zhu]]></name>
@@ -16,11 +16,12 @@
     <link href="http://hexo.zhuli.me/2013/04/20/smilies-test/"/>
     <id>http://hexo.zhuli.me/2013/04/20/smilies-test/</id>
     <published>2013-04-20T11:41:48.000Z</published>
-    <updated>2013-04-20T11:50:16.000Z</updated>
+    <updated>2013-04-20T12:05:11.000Z</updated>
     <content type="html"><![CDATA[<p>这篇文章用于测试表情js是否正常，嘿嘿。
 比如说呢[ali啊啊啊][ali嘲弄]的。好像和markdown冲突了尼玛！[ali囧]再测试测试</p>
-<p>额。。。。[bed扭腰][ali感动]。因为分号好难控制呀，中文的和英文，傻傻分不清楚：:</p>
+<p>额。。。。[bed练腰][ali感动]。因为分号好难控制呀，中文的和英文，傻傻分不清楚：:</p>
 <p>呵呵呵   再试试吧  居然加空格 [ali啊啊啊]</p>
+<p>好吧，虽然看着比较奇怪[bed蹬腿]，但是木有办法[bed揉眼]。因为方括号好像是最好的符号的选择了[bed弹跳]。一般情况下也不会和markdown语法有冲突的其实。[bed兴奋]。仔细看了下md语法。[bed跑]</p>
 ]]></content>
   </entry>
   <entry>
